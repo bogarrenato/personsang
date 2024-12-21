@@ -1,0 +1,26 @@
+Daemon process terminated and closed the connection
+
+Messages from the log:
+[NX Daemon Server] - 2024-12-21T18:34:04.789Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.789Z - Handled GLOB. Handling time: 2. Response time: 3.
+[NX Daemon Server] - 2024-12-21T18:34:04.792Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.792Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.792Z - Handled HASH_GLOB. Handling time: 3. Response time: 0.
+[NX Daemon Server] - 2024-12-21T18:34:04.794Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.794Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.794Z - Handled HASH_GLOB. Handling time: 2. Response time: 0.
+[NX Daemon Server] - 2024-12-21T18:34:04.799Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.799Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.799Z - Handled HASH_GLOB. Handling time: 3. Response time: 0.
+[NX Daemon Server] - 2024-12-21T18:34:04.802Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.802Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.802Z - Handled HASH_GLOB. Handling time: 3. Response time: 0.
+[NX Daemon Server] - 2024-12-21T18:34:04.861Z - Time taken for 'build-project-configs' 54.53795796632767ms
+[NX Daemon Server] - 2024-12-21T18:34:04.864Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.864Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-12-21T18:34:04.864Z - Handled HASH_GLOB. Handling time: 3. Response time: 0.
+[NX Daemon Server] - 2024-12-21T18:34:04.864Z - [WATCHER]: 1 file(s) created or restored, 2 file(s) modified, 0 file(s) deleted
+
+
+
+More information: /Users/macbookpro/Desktop/angular19/my-workspace/.nx/workspace-data/d/daemon.log
