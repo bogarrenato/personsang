@@ -1,0 +1,42 @@
+<mat-toolbar class="nav-toolbar">
+  <div class="nav-container">
+    <!-- App Logo -->
+    <div class="logo-section">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png"
+        alt="App Logo"
+        class="app-logo"
+      />
+      <span class="app-name">MyApp</span>
+    </div>
+
+    <!-- User Profile Section -->
+    @if (authStore.isAuthenticated()) {
+    <button mat-button [matMenuTriggerFor]="profileMenu" class="profile-button">
+      <div class="profile-content">
+        <div class="profile-image-container">
+          <img
+            [src]="getProfileImage()"
+            [alt]="authStore.username()"
+            class="profile-image"
+          />
+        </div>
+        <span class="username">{{ authStore.username() }}</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </div>
+    </button>
+
+    <mat-menu #profileMenu="matMenu" class="profile-menu">
+      <button mat-menu-item (click)="navigateToProfile()">
+        <mat-icon>person</mat-icon>
+        <span>Profile Settings</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()" class="logout-button">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+    }
+  </div>
+</mat-toolbar>

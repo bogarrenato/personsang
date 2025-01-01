@@ -1,3 +1,14 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable, computed, inject } from '@angular/core';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
+import { firstValueFrom } from 'rxjs';
+
 // libs/shared/auth/src/lib/types/request-state.ts
 export type RequestState<TData, TError = Error> = {
   data: TData | null;
@@ -10,6 +21,8 @@ export interface User {
   id: string;
   username: string;
   token: string;
+  photoUrl: string;
+  knownAs: string;
 }
 
 export interface LoginCredentials {
@@ -18,40 +31,24 @@ export interface LoginCredentials {
 }
 
 export interface AuthState {
-  loginRequest: RequestState<User>;
+  loginRequest: {
+    data: User | null;
+    isLoading: boolean;
+    error: Error | null;
+  };
+  token: string | null;
 }
-
-import { HttpClient } from '@angular/common/http';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-// libs/shared/auth/src/lib/store/auth.store.ts
-import { Injectable, computed, inject } from '@angular/core';
-import {
-    patchState,
-  signalStore,
-  withComputed,
-  withMethods,
-  withState,
-} from '@ngrx/signals';
-import { catchError, of, pipe, switchMap, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly API_URL = '/api/auth';
+  private readonly API_URL = 'https://localhost:5001/api/';
 
   constructor(private http: HttpClient) {}
 
   login(credentials: LoginCredentials) {
-    return this.http.post<User>(`${this.API_URL}/login`, credentials);
+    return this.http.post<User>(`${this.API_URL}account/login`, credentials);
   }
 }
-
-const initialState: AuthState = {
-  loginRequest: {
-    data: null,
-    isLoading: false,
-    error: null,
-  },
-};
 
 @Injectable({ providedIn: 'root' })
 export class TokenService {
@@ -69,7 +66,22 @@ export class TokenService {
     localStorage.removeItem(this.TOKEN_KEY);
   }
 }
-
+export interface AuthState {
+  loginRequest: {
+    data: User | null;
+    isLoading: boolean;
+    error: Error | null;
+  };
+  token: string | null; // Add token to state
+}
+export const initialState: AuthState = {
+  loginRequest: {
+    data: null,
+    isLoading: false,
+    error: null,
+  },
+  token: null,
+};
 export const AuthStore = signalStore(
   { providedIn: 'root' },
   withState<AuthState>(initialState),
@@ -77,53 +89,38 @@ export const AuthStore = signalStore(
     isAuthenticated: computed(() => !!store.loginRequest().data),
     username: computed(() => store.loginRequest().data?.username ?? null),
     isLoading: computed(() => store.loginRequest().isLoading),
+    token: computed(() => store.token()),
   })),
   withMethods((store) => {
-    // Inject dependencies
     const authService = inject(AuthService);
     const tokenService = inject(TokenService);
 
     return {
-      login: rxMethod<LoginCredentials>(
-        pipe(
-          tap(() => {
-            patchState(store, {
-              loginRequest: {
-                data: null,
-                isLoading: true,
-                error: null,
-              },
-            });
-          }),
-          switchMap((credentials) =>
-            authService.login(credentials).pipe(
-              tap((user) => {
-                tokenService.setToken(user.token);
-                patchState(store, {
-                  loginRequest: {
-                    data: user,
-                    isLoading: false,
-                    error: null,
-                  },
-                });
-              }),
-              catchError((error: Error) => {
-                patchState(store, {
-                  loginRequest: {
-                    data: null,
-                    isLoading: false,
-                    error,
-                  },
-                });
-                return of(null);
-              })
-            )
-          )
-        )
-      ),
-      logout() {
-        tokenService.removeToken();
-        patchState(store, initialState);
+      async login(credentials: LoginCredentials): Promise<void> {
+        patchState(store, {
+          loginRequest: { data: null, isLoading: true, error: null },
+          token: null,
+        });
+
+        try {
+          const user = await firstValueFrom(authService.login(credentials));
+          tokenService.setToken(user.token);
+
+          patchState(store, {
+            loginRequest: { data: user, isLoading: false, error: null },
+            token: user.token,
+          });
+        } catch (error) {
+          patchState(store, {
+            loginRequest: {
+              data: null,
+              isLoading: false,
+              error: error as Error,
+            },
+            token: null,
+          });
+          throw error;
+        }
       },
     };
   })

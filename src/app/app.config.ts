@@ -8,6 +8,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { appRoutes } from './app.routes';
 import { ToastrModule, provideToastr } from 'ngx-toastr';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 // import { provideStore } from '@ngrx/signals';
 
 export const appConfig: ApplicationConfig = {
@@ -21,6 +22,6 @@ export const appConfig: ApplicationConfig = {
       timeOut: 3000,
       positionClass: 'toast-top-right',
     }),
-    importProvidersFrom([ToastrModule.forRoot()]),
+    importProvidersFrom([ToastrModule.forRoot()]), provideAnimationsAsync(),
   ],
 };

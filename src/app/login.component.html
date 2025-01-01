@@ -1,0 +1,70 @@
+<div class="login-container" [class.dark-theme]="isDarkTheme()">
+  <button
+    mat-icon-button
+    class="theme-toggle"
+    (click)="toggleTheme()"
+    [attr.aria-label]="
+      isDarkTheme() ? 'Switch to light theme' : 'Switch to dark theme'
+    "
+  >
+    <mat-icon>{{ isDarkTheme() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    class="login-form"
+    data-testid="login-form"
+    aria-label="Login form"
+  >
+    <h1 class="login-title">Welcome Back 👋</h1>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        formControlName="username"
+        data-testid="username-input"
+        [attr.aria-invalid]="loginForm.get('username')?.invalid"
+        aria-label="Enter your username"
+        placeholder="Enter your username"
+      />
+      @if (loginForm.get('username')?.invalid) {
+      <mat-error role="alert" aria-live="polite">
+        Username is required
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        data-testid="password-input"
+        formControlName="password"
+        [attr.aria-invalid]="loginForm.get('password')?.invalid"
+        aria-label="Enter your password"
+        placeholder="Enter your password"
+        type="password"
+      />
+      @if (loginForm.get('password')?.invalid) {
+      <mat-error role="alert" aria-live="polite">
+        Password is required
+      </mat-error>
+      }
+    </mat-form-field>
+
+    @if (loginStore.error()) {
+    <div class="error-message" role="alert" aria-live="assertive">
+      {{ loginStore.error() }}
+    </div>
+    }
+
+    <button mat-stroked-button data-testid="submit-button" type="submit">
+      @if (!loginStore.loading()) {
+      {{ 'Sign In' }}
+      } @else {
+      <mat-spinner aria-label="Signing in" diameter="20" class="spinner" />
+      }
+    </button>
+  </form>
+</div>

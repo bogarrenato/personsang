@@ -1,7 +1,10 @@
+const cypress = require('eslint-plugin-cypress/flat');
 const baseConfig = require('./eslint.base.config.js');
 const nx = require('@nx/eslint-plugin');
 
 module.exports = [
+  cypress.configs['recommended'],
+
   ...baseConfig,
   {
     ignores: ['**/dist'],
@@ -44,5 +47,14 @@ module.exports = [
     rules: {
       '@angular-eslint/prefer-standalone': 'off',
     },
+  },
+  {
+    files: ['**/*.ts', '**/*.js'],
+    // Override or add rules here
+    rules: {},
+  },
+  {
+    // Override or add rules here
+    rules: {},
   },
 ];
