@@ -1,1 +1,1 @@
-export * from './lib/ui-common/ui-common.component';
+export * from './lib/ui-common/theme-service';

@@ -1,0 +1,39 @@
+<mat-paginator
+  [length]="total()"
+  [pageSize]="pageSize()"
+  [pageIndex]="pageIndex()"
+  [pageSizeOptions]="[5, 10, 25]"
+  (page)="onPageChange($event)"
+/>
+<div class="members-grid">
+
+  <article class="member-card" *ngFor="let member of store.members()">
+    <!-- {{ member | json }} -->
+    <header class="card-header">
+      <img [src]="member.photoUrl" [alt]="member.knownAs" />
+      <div class="card-details">
+        <h2>{{ member.knownAs }}</h2>
+        <div class="location"><mat-icon>place</mat-icon> {{ member.city }}</div>
+      </div>
+    </header>
+
+    <div class="card-content">
+      <div class="stats">
+        <div>
+          <span class="label">Age</span>
+          <span class="value">{{ member.age }}</span>
+        </div>
+        <div>
+          <span class="label">Last Active</span>
+          <span class="value">{{ member.lastActive | date }}</span>
+        </div>
+      </div>
+      <p>{{ member.introduction }}</p>
+    </div>
+
+    <button class="card-action" (click)="navigateToDetails(member.userName)">
+      View Profile
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+  </article>
+</div>

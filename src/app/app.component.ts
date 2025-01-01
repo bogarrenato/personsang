@@ -21,48 +21,6 @@ import { patchState } from '@ngrx/signals';
 import { DOCUMENT } from '@angular/common';
 import { NavbarComponent } from './navbar.component';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class ThemeService {
-  private document = inject(DOCUMENT);
-  isDarkTheme = signal<boolean>(this.loadInitialTheme());
-
-  constructor() {
-    this.setupThemeEffect();
-  }
-
-  private loadInitialTheme(): boolean {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      this.applyTheme(savedTheme === 'dark');
-      return savedTheme === 'dark';
-    }
-    return false;
-  }
-
-  private setupThemeEffect(): void {
-    effect(() => {
-      const isDark = this.isDarkTheme();
-      this.applyTheme(isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-  }
-
-  toggleTheme(): void {
-    this.isDarkTheme.update((dark) => !dark);
-  }
-
-  private applyTheme(isDark: boolean): void {
-    const html = this.document.documentElement;
-    if (isDark) {
-      html.classList.add('dark-theme');
-    } else {
-      html.classList.remove('dark-theme');
-    }
-  }
-}
-
 export interface IAuthService {
   login(username: string, password: string): Promise<void>;
 }
@@ -127,7 +85,7 @@ export const LoginStore = signalStore(
 
         try {
           await authStore.login({ username, password });
-          router.navigate(['/dashboard']);
+          // router.navigate(['/dashboard']);
           patchState(store, { callState: 'loaded' });
         } catch (error) {
           patchState(store, {

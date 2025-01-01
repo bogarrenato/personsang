@@ -2,6 +2,12 @@
   "version": "6.0",
   "nxVersion": "20.3.0",
   "pathMappings": {
+    "@features/members": [
+      "src/app/features/members/src/index.ts"
+    ],
+    "@my-workspace/shared/ui-common": [
+      "libs/shared/ui-common/src/index.ts"
+    ],
     "@my-workspace/shared/util-auth": [
       "libs/shared/util-auth/src/index.ts"
     ],
@@ -10,9 +16,6 @@
     ],
     "@my-workspace/shared/util-environments": [
       "libs/shared/util-environments/src/index.ts"
-    ],
-    "@my-workspace/ui-common": [
-      "libs/shared/ui-common/src/index.ts"
     ]
   },
   "nxJsonPlugins": [
@@ -35,50 +38,6 @@
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
-      "shared-ui-common": [
-        {
-          "file": "libs/shared/ui-common/README.md",
-          "hash": "5816055938019890372"
-        },
-        {
-          "file": "libs/shared/ui-common/eslint.config.js",
-          "hash": "18082951720096861069",
-          "deps": [
-            "npm:@nx/eslint-plugin"
-          ]
-        },
-        {
-          "file": "libs/shared/ui-common/jest.config.ts",
-          "hash": "4089974332153354681"
-        },
-        {
-          "file": "libs/shared/ui-common/project.json",
-          "hash": "15907151086255844304"
-        },
-        {
-          "file": "libs/shared/ui-common/src/index.ts",
-          "hash": "1887279048702575292"
-        },
-        {
-          "file": "libs/shared/ui-common/src/test-setup.ts",
-          "hash": "2744745752550557158",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "libs/shared/ui-common/tsconfig.json",
-          "hash": "1948416733966154877"
-        },
-        {
-          "file": "libs/shared/ui-common/tsconfig.lib.json",
-          "hash": "6020606002228403423"
-        },
-        {
-          "file": "libs/shared/ui-common/tsconfig.spec.json",
-          "hash": "7159729809249402441"
-        }
-      ],
       "util-common": [
         {
           "file": "libs/shared/util-common/README.md",
@@ -86,7 +45,7 @@
         },
         {
           "file": "libs/shared/util-common/eslint.config.js",
-          "hash": "8796736307143429095",
+          "hash": "10813213436551847204",
           "deps": [
             "npm:@nx/eslint-plugin"
           ]
@@ -135,172 +94,6 @@
           "hash": "7159729809249402441"
         }
       ],
-      "shared-util-environments": [
-        {
-          "file": "libs/shared/util-environments/README.md",
-          "hash": "2829351070749850641"
-        },
-        {
-          "file": "libs/shared/util-environments/eslint.config.js",
-          "hash": "18082951720096861069",
-          "deps": [
-            "npm:@nx/eslint-plugin"
-          ]
-        },
-        {
-          "file": "libs/shared/util-environments/jest.config.ts",
-          "hash": "9459495969478827900"
-        },
-        {
-          "file": "libs/shared/util-environments/project.json",
-          "hash": "5938326941897787038"
-        },
-        {
-          "file": "libs/shared/util-environments/src/index.ts",
-          "hash": "1762015656005621552"
-        },
-        {
-          "file": "libs/shared/util-environments/src/lib/util-environments/environment.prod.ts",
-          "hash": "15521728674813127327"
-        },
-        {
-          "file": "libs/shared/util-environments/src/lib/util-environments/environment.ts",
-          "hash": "14564205316563797910"
-        },
-        {
-          "file": "libs/shared/util-environments/src/test-setup.ts",
-          "hash": "2744745752550557158",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "libs/shared/util-environments/tsconfig.json",
-          "hash": "1948416733966154877"
-        },
-        {
-          "file": "libs/shared/util-environments/tsconfig.lib.json",
-          "hash": "6020606002228403423"
-        },
-        {
-          "file": "libs/shared/util-environments/tsconfig.spec.json",
-          "hash": "7159729809249402441"
-        }
-      ],
-      "util-auth": [
-        {
-          "file": "libs/shared/util-auth/README.md",
-          "hash": "15068227252897991652"
-        },
-        {
-          "file": "libs/shared/util-auth/eslint.config.js",
-          "hash": "8796736307143429095",
-          "deps": [
-            "npm:@nx/eslint-plugin"
-          ]
-        },
-        {
-          "file": "libs/shared/util-auth/jest.config.ts",
-          "hash": "4468024562600010427"
-        },
-        {
-          "file": "libs/shared/util-auth/project.json",
-          "hash": "1108255309799579155"
-        },
-        {
-          "file": "libs/shared/util-auth/src/index.ts",
-          "hash": "9073156001062582513"
-        },
-        {
-          "file": "libs/shared/util-auth/src/lib/auth.service.ts",
-          "hash": "18247801586944603671",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/shared/util-auth/src/lib/interceptors/token.interceptor.ts",
-          "hash": "7303906634062807958",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/shared/util-auth/src/lib/state/auth.state.ts",
-          "hash": "18270350815195945171",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@ngrx/signals",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/shared/util-auth/src/test-setup.ts",
-          "hash": "2744745752550557158",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "libs/shared/util-auth/tsconfig.json",
-          "hash": "1948416733966154877"
-        },
-        {
-          "file": "libs/shared/util-auth/tsconfig.lib.json",
-          "hash": "6020606002228403423"
-        },
-        {
-          "file": "libs/shared/util-auth/tsconfig.spec.json",
-          "hash": "7159729809249402441"
-        }
-      ],
-      "e2e": [
-        {
-          "file": "e2e/cypress.config.ts",
-          "hash": "13246910215580843565",
-          "deps": [
-            "npm:@nx/cypress",
-            "npm:cypress"
-          ]
-        },
-        {
-          "file": "e2e/eslint.config.js",
-          "hash": "17895196754622705499",
-          "deps": [
-            "npm:eslint-plugin-cypress"
-          ]
-        },
-        {
-          "file": "e2e/project.json",
-          "hash": "3448339714465858126"
-        },
-        {
-          "file": "e2e/src/e2e/app.cy.ts",
-          "hash": "2588220647650846806"
-        },
-        {
-          "file": "e2e/src/fixtures/example.json",
-          "hash": "11785586596216172004"
-        },
-        {
-          "file": "e2e/src/support/app.po.ts",
-          "hash": "11157016311132186162"
-        },
-        {
-          "file": "e2e/src/support/commands.ts",
-          "hash": "6408592624158157338"
-        },
-        {
-          "file": "e2e/src/support/e2e.ts",
-          "hash": "1054106023200826784"
-        },
-        {
-          "file": "e2e/tsconfig.json",
-          "hash": "4113462041669113066"
-        }
-      ],
       "my-workspace": [
         {
           "file": ".gitignore",
@@ -340,6 +133,10 @@
           "deps": [
             "npm:@nx/eslint-plugin"
           ]
+        },
+        {
+          "file": "eslint.config.cjs",
+          "hash": "1954524332097662013"
         },
         {
           "file": "eslint.config.js",
@@ -448,7 +245,7 @@
         },
         {
           "file": "src/app/app.component.html",
-          "hash": "4419683888100521251"
+          "hash": "4916171134931185710"
         },
         {
           "file": "src/app/app.component.scss",
@@ -467,7 +264,7 @@
         },
         {
           "file": "src/app/app.component.ts",
-          "hash": "12422600936569575147",
+          "hash": "15636608643544303152",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router",
@@ -479,20 +276,25 @@
         },
         {
           "file": "src/app/app.config.ts",
-          "hash": "5610957307750397741",
+          "hash": "8913763864809080054",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router",
             "npm:@angular/platform-browser",
             "npm:ngx-toastr",
-            "npm:@angular/common"
+            "npm:@angular/common",
+            "util-auth"
           ]
         },
         {
           "file": "src/app/app.routes.ts",
-          "hash": "310606411419287434",
+          "hash": "7701513944290145387",
           "deps": [
-            "npm:@angular/router"
+            "npm:@angular/router",
+            [
+              "members",
+              "dynamic"
+            ]
           ]
         },
         {
@@ -535,12 +337,27 @@
           ]
         },
         {
+          "file": "src/app/jwt.interceptor.spec.ts",
+          "hash": "8481343578616593873",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common"
+          ]
+        },
+        {
+          "file": "src/app/jwt.interceptor.ts",
+          "hash": "7653188935268185097",
+          "deps": [
+            "npm:@angular/common"
+          ]
+        },
+        {
           "file": "src/app/login.component.html",
           "hash": "12971154641983189974"
         },
         {
           "file": "src/app/login.component.scss",
-          "hash": "5220711631816081532"
+          "hash": "3898178900668828250"
         },
         {
           "file": "src/app/login.component.spec.ts",
@@ -551,19 +368,20 @@
         },
         {
           "file": "src/app/login.component.ts",
-          "hash": "289252304133522992",
+          "hash": "14571018650745050825",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
             "npm:@angular/router",
             "npm:@angular/forms",
             "npm:@angular/material",
-            "util-common"
+            "util-common",
+            "ui-common"
           ]
         },
         {
           "file": "src/app/navbar.component.html",
-          "hash": "15283981489212026901"
+          "hash": "5289202387271535289"
         },
         {
           "file": "src/app/navbar.component.scss",
@@ -578,7 +396,7 @@
         },
         {
           "file": "src/app/navbar.component.ts",
-          "hash": "17499955502711068697",
+          "hash": "10802509152842120526",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -614,7 +432,7 @@
         },
         {
           "file": "src/styles/_material-theme.scss",
-          "hash": "11282182872772732390"
+          "hash": "2250985671254692295"
         },
         {
           "file": "src/test-setup.ts",
@@ -637,7 +455,7 @@
         },
         {
           "file": "tsconfig.base.json",
-          "hash": "10902850608086106770"
+          "hash": "4794023944565218763"
         },
         {
           "file": "tsconfig.editor.json",
@@ -650,6 +468,334 @@
         {
           "file": "tsconfig.spec.json",
           "hash": "16287279946930924495"
+        }
+      ],
+      "shared-util-environments": [
+        {
+          "file": "libs/shared/util-environments/README.md",
+          "hash": "2829351070749850641"
+        },
+        {
+          "file": "libs/shared/util-environments/eslint.config.js",
+          "hash": "3994480329532556390",
+          "deps": [
+            "npm:@nx/eslint-plugin"
+          ]
+        },
+        {
+          "file": "libs/shared/util-environments/jest.config.ts",
+          "hash": "9459495969478827900"
+        },
+        {
+          "file": "libs/shared/util-environments/project.json",
+          "hash": "5938326941897787038"
+        },
+        {
+          "file": "libs/shared/util-environments/src/index.ts",
+          "hash": "1762015656005621552"
+        },
+        {
+          "file": "libs/shared/util-environments/src/lib/util-environments/environment.prod.ts",
+          "hash": "15521728674813127327"
+        },
+        {
+          "file": "libs/shared/util-environments/src/lib/util-environments/environment.ts",
+          "hash": "14564205316563797910"
+        },
+        {
+          "file": "libs/shared/util-environments/src/test-setup.ts",
+          "hash": "2744745752550557158",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "libs/shared/util-environments/tsconfig.json",
+          "hash": "1948416733966154877"
+        },
+        {
+          "file": "libs/shared/util-environments/tsconfig.lib.json",
+          "hash": "6020606002228403423"
+        },
+        {
+          "file": "libs/shared/util-environments/tsconfig.spec.json",
+          "hash": "7159729809249402441"
+        }
+      ],
+      "ui-common": [
+        {
+          "file": "libs/shared/ui-common/README.md",
+          "hash": "5816055938019890372"
+        },
+        {
+          "file": "libs/shared/ui-common/eslint.config.js",
+          "hash": "3994480329532556390",
+          "deps": [
+            "npm:@nx/eslint-plugin"
+          ]
+        },
+        {
+          "file": "libs/shared/ui-common/jest.config.ts",
+          "hash": "4089974332153354681"
+        },
+        {
+          "file": "libs/shared/ui-common/project.json",
+          "hash": "3788071572280762787"
+        },
+        {
+          "file": "libs/shared/ui-common/src/index.ts",
+          "hash": "7163664843944605345"
+        },
+        {
+          "file": "libs/shared/ui-common/src/lib/ui-common/theme-service.ts",
+          "hash": "11386564813944186531",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/shared/ui-common/src/test-setup.ts",
+          "hash": "2744745752550557158",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "libs/shared/ui-common/tsconfig.json",
+          "hash": "1948416733966154877"
+        },
+        {
+          "file": "libs/shared/ui-common/tsconfig.lib.json",
+          "hash": "6020606002228403423"
+        },
+        {
+          "file": "libs/shared/ui-common/tsconfig.spec.json",
+          "hash": "7159729809249402441"
+        }
+      ],
+      "e2e": [
+        {
+          "file": "e2e/cypress.config.ts",
+          "hash": "13246910215580843565",
+          "deps": [
+            "npm:@nx/cypress",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "e2e/eslint.config.js",
+          "hash": "7091689292826765651",
+          "deps": [
+            "npm:eslint-plugin-cypress"
+          ]
+        },
+        {
+          "file": "e2e/project.json",
+          "hash": "3448339714465858126"
+        },
+        {
+          "file": "e2e/src/e2e/app.cy.ts",
+          "hash": "2588220647650846806"
+        },
+        {
+          "file": "e2e/src/fixtures/example.json",
+          "hash": "11785586596216172004"
+        },
+        {
+          "file": "e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "e2e/src/support/commands.ts",
+          "hash": "6408592624158157338"
+        },
+        {
+          "file": "e2e/src/support/e2e.ts",
+          "hash": "1054106023200826784"
+        },
+        {
+          "file": "e2e/tsconfig.json",
+          "hash": "4113462041669113066"
+        }
+      ],
+      "members": [
+        {
+          "file": "src/app/features/members/README.md",
+          "hash": "1485142879479399902"
+        },
+        {
+          "file": "src/app/features/members/eslint.config.cjs",
+          "hash": "7147073927941140921",
+          "deps": [
+            "npm:@nx/eslint-plugin"
+          ]
+        },
+        {
+          "file": "src/app/features/members/jest.config.ts",
+          "hash": "5353821385744439252"
+        },
+        {
+          "file": "src/app/features/members/project.json",
+          "hash": "15057361482848296089"
+        },
+        {
+          "file": "src/app/features/members/src/index.ts",
+          "hash": "7940649242136676122"
+        },
+        {
+          "file": "src/app/features/members/src/lib/lib.routes.ts",
+          "hash": "7597926254264056063",
+          "deps": [
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "src/app/features/members/src/lib/member-details.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/features/members/src/lib/member-details/member-details.component.html",
+          "hash": "8988926213503883019"
+        },
+        {
+          "file": "src/app/features/members/src/lib/member-details/member-details.component.scss",
+          "hash": "5887100957922632458"
+        },
+        {
+          "file": "src/app/features/members/src/lib/member-details/member-details.component.spec.ts",
+          "hash": "1859188265619909164",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/features/members/src/lib/member-details/member-details.component.ts",
+          "hash": "7073248144820030836",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@angular/router",
+            "npm:rxjs",
+            "npm:@ngrx/signals",
+            "npm:@angular/material"
+          ]
+        },
+        {
+          "file": "src/app/features/members/src/lib/members/members.component.html",
+          "hash": "7603421957667694726"
+        },
+        {
+          "file": "src/app/features/members/src/lib/members/members.component.scss",
+          "hash": "8689070684209975423"
+        },
+        {
+          "file": "src/app/features/members/src/lib/members/members.component.spec.ts",
+          "hash": "8165263071296721024",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/features/members/src/lib/members/members.component.ts",
+          "hash": "16091580059792287230",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@ngrx/signals",
+            "npm:@angular/material",
+            "npm:rxjs",
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "src/app/features/members/src/test-setup.ts",
+          "hash": "1917999429567095215",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "src/app/features/members/tsconfig.json",
+          "hash": "3824647829043527423"
+        },
+        {
+          "file": "src/app/features/members/tsconfig.lib.json",
+          "hash": "8746075233993636049"
+        },
+        {
+          "file": "src/app/features/members/tsconfig.spec.json",
+          "hash": "9840611283105717156"
+        }
+      ],
+      "util-auth": [
+        {
+          "file": "libs/shared/util-auth/README.md",
+          "hash": "15068227252897991652"
+        },
+        {
+          "file": "libs/shared/util-auth/eslint.config.js",
+          "hash": "10813213436551847204",
+          "deps": [
+            "npm:@nx/eslint-plugin"
+          ]
+        },
+        {
+          "file": "libs/shared/util-auth/jest.config.ts",
+          "hash": "4468024562600010427"
+        },
+        {
+          "file": "libs/shared/util-auth/project.json",
+          "hash": "1108255309799579155"
+        },
+        {
+          "file": "libs/shared/util-auth/src/index.ts",
+          "hash": "9073156001062582513"
+        },
+        {
+          "file": "libs/shared/util-auth/src/lib/auth.service.ts",
+          "hash": "18247801586944603671",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/shared/util-auth/src/lib/interceptors/token.interceptor.ts",
+          "hash": "7303906634062807958",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/shared/util-auth/src/lib/state/auth.state.ts",
+          "hash": "16468028041693231139",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@ngrx/signals",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/shared/util-auth/src/test-setup.ts",
+          "hash": "2744745752550557158",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "libs/shared/util-auth/tsconfig.json",
+          "hash": "1948416733966154877"
+        },
+        {
+          "file": "libs/shared/util-auth/tsconfig.lib.json",
+          "hash": "6020606002228403423"
+        },
+        {
+          "file": "libs/shared/util-auth/tsconfig.spec.json",
+          "hash": "7159729809249402441"
         }
       ]
     }

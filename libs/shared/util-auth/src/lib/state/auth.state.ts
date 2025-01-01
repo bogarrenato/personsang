@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   patchState,
   signalStore,
@@ -94,6 +95,7 @@ export const AuthStore = signalStore(
   withMethods((store) => {
     const authService = inject(AuthService);
     const tokenService = inject(TokenService);
+    const router = inject(Router);
 
     return {
       async login(credentials: LoginCredentials): Promise<void> {
@@ -120,6 +122,23 @@ export const AuthStore = signalStore(
             token: null,
           });
           throw error;
+        }
+      },
+
+      async checkAuthStatus(): Promise<void> {
+        const token = tokenService.getToken();
+        if (!token) return;
+
+        const credentials = {
+          username: 'lisa',
+          password: 'Pa$$w0rd',
+        };
+
+        try {
+          await this.login(credentials);
+          // router.navigate(['/dashboard']);
+        } catch (error) {
+          tokenService.removeToken();
         }
       },
     };

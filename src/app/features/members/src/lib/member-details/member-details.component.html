@@ -1,0 +1,40 @@
+<div class="details-container" *ngIf="store.member() as member">
+  <div class="profile-section">
+    <img [src]="member.photoUrl" [alt]="member.knownAs" />
+    <div class="info">
+      <h1>{{ member.knownAs }}</h1>
+      <div class="location">
+        <mat-icon>place</mat-icon>
+        {{ member.city }}, {{ member.country }}
+      </div>
+      <div class="stats">
+        <div>Age: {{ member.age }}</div>
+        <div>Last Active: {{ member.lastActive | date }}</div>
+      </div>
+    </div>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="About">
+      <h3>Description</h3>
+      <p>{{ member.introduction }}</p>
+      <h3>Looking For</h3>
+      <p>{{ member.lookingFor }}</p>
+    </mat-tab>
+    <mat-tab label="Interests">
+      <p>{{ member.interests }}</p>
+    </mat-tab>
+    <mat-tab label="Photos">
+      <div class="photos-grid">
+        <img
+          *ngFor="let photo of member.photos"
+          [src]="photo.url"
+          [alt]="member.knownAs"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="Messages">
+      <p>{{ member.interests }}</p>
+    </mat-tab>
+  </mat-tab-group>
+</div>

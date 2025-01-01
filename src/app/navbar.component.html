@@ -31,6 +31,10 @@
         <mat-icon>person</mat-icon>
         <span>Profile Settings</span>
       </button>
+      <button mat-menu-item (click)="navigateToMembers()">
+        <mat-icon>group</mat-icon>
+        <span>Members</span>
+      </button>
       <mat-divider></mat-divider>
       <button mat-menu-item (click)="logout()" class="logout-button">
         <mat-icon>exit_to_app</mat-icon>

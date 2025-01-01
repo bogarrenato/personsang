@@ -1,0 +1,43 @@
+.details-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    background: #1a1a1a;
+    min-height: 100vh;
+  }
+
+  .profile-section {
+    img {
+      width: 100%;
+      border-radius: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .info {
+      color: white;
+      
+      h1 {
+        margin: 0 0 1rem;
+      }
+    }
+  }
+
+  mat-tab-group {
+    color: white;
+    padding: 1rem;
+    background: #242424;
+    border-radius: 0.75rem;
+  }
+
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+
+    img {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+  }

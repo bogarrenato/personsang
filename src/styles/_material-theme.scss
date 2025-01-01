@@ -1,86 +1,35 @@
-// // _material-theme.scss
-// @use "@angular/material" as mat;
-// @include mat.core();
-
-// // Egyéni primary paletta
-// $custom-primary: (
-//   50: #e0f7fa,
-//   100: #b2ebf2,
-//   200: #80deea,
-//   300: #4dd0e1,
-//   400: #26c6da,
-//   500: #00bcd4,
-//   600: #00acc1,
-//   700: #0097a7,
-//   800: #00838f,
-//   900: #006064,
-//   A100: #84ffff,
-//   A200: #18ffff,
-//   A400: #00e5ff,
-//   A700: #00b8d4,
-//   contrast: (
-//     50: rgba(black, 0.87),
-//     100: rgba(black, 0.87),
-//     200: rgba(black, 0.87),
-//     300: rgba(black, 0.87),
-//     400: rgba(black, 0.87),
-//     500: white,
-//     600: white,
-//     700: white,
-//     800: white,
-//     900: white,
-//     A100: rgba(black, 0.87),
-//     A200: rgba(black, 0.87),
-//     A400: rgba(black, 0.87),
-//     A700: rgba(black, 0.87),
-//   )
-// );
-
-// // Világos téma
-// $light-theme: mat.m2-define-light-theme((
-//   color: (
-//     primary: mat.m2-define-palette($custom-primary),
-//     accent: mat.m2-define-palette($custom-primary, A200, A100, A400)
-//   )
-// ));
-
-// // Sötét téma
-// $dark-theme: mat.m2-define-dark-theme((
-//   color: (
-//     primary: mat.m2-define-palette($custom-primary),
-//     accent: mat.m2-define-palette($custom-primary, A200, A100, A400)
-//   )
-// ));
-
-// // Alap téma alkalmazása
-// @include mat.all-component-themes($light-theme);
-
-// // Sötét téma class-szal
-// .dark-theme {
-//   @include mat.all-component-colors($dark-theme);
-// }
-
-
 @use '@angular/material' as mat;
 
 html {
-  color-scheme: light ;
-  @include mat.theme((
-    color: mat.$violet-palette,
-    typography: Roboto,
-    density: 0
-  ));
-
-  
+  color-scheme: light;
+  @include mat.theme(
+    (
+      color: mat.$violet-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
 }
 
 html.dark-theme {
-  color-scheme: dark ;
-  @include mat.theme((
-    color: mat.$azure-palette,
-    typography: Roboto,
-    density: 0
-  ));
+  color-scheme: dark;
+  @include mat.theme(
+    (
+      color: mat.$azure-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-flat-button {
+  &:focus-visible {
+    outline: 2px solid blue;
+    outline-offset: 2px;
+  }
 }
 
 // $primary: mat.m2-define-palette(mat.$m2-indigo-palette);

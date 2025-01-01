@@ -4,6 +4,8 @@ const cypress = require('eslint-plugin-cypress/flat');
 module.exports = [
   ...baseConfig,
 
+  ...baseConfig,
+
   cypress.configs['recommended'],
   {
     // Override or add rules here

@@ -1,9 +1,7 @@
 const nx = require('@nx/eslint-plugin');
-const baseConfig = require('../../../eslint.base.config.js');
+const baseConfig = require('../../../../eslint.base.config.js');
 
 module.exports = [
-  ...baseConfig,
-
   ...baseConfig,
   ...nx.configs['flat/angular'],
   ...nx.configs['flat/angular-template'],
@@ -32,11 +30,5 @@ module.exports = [
     files: ['**/*.html'],
     // Override or add rules here
     rules: {},
-  },
-  {
-    files: ['**/*.ts'],
-    rules: {
-      '@angular-eslint/prefer-standalone': 'off',
-    },
   },
 ];

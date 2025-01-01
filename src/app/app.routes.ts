@@ -11,7 +11,17 @@ export const appRoutes: Route[] = [
     // canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-    //   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      //   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'members',
+        loadChildren: () => {
+          console.log('Trying to load members module');
+          return import('@features/members').then((m) => {
+            console.log('Loaded module:', m);
+            return m.membersRoutes;
+          });
+        }
+      }
     ],
   },
 ];

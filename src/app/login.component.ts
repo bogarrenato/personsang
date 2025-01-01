@@ -20,7 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NotificationService } from '@my-workspace/shared/util-common';
-import { LoginStore, ThemeService } from './app.component';
+import { LoginStore } from './app.component';
+import { ThemeService } from '@my-workspace/shared/ui-common';
 
 @Component({
   selector: 'app-login',
@@ -64,12 +65,12 @@ export class LoginComponent implements OnInit {
     }
 
     // Effect a téma változásának követésére
-    effect(() => {
-      const isDark = this.isDarkTheme();
-      this.applyTheme(isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      // this.router.navigate(['/dashboard']);
-    });
+    // effect(() => {
+    //   const isDark = this.isDarkTheme();
+    //   this.applyTheme(isDark);
+    //   localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    //   // this.router.navigate(['/dashboard']);
+    // });
   }
 
   async onSubmit() {

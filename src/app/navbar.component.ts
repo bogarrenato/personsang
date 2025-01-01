@@ -41,4 +41,8 @@ export class NavbarComponent {
     // You might want to call a method from your AuthStore
     this.router.navigate(['/login']);
   }
+
+  navigateToMembers() {
+    this.router.navigate(['/members']);
+  }
 }
