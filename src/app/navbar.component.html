@@ -35,6 +35,11 @@
         <mat-icon>group</mat-icon>
         <span>Members</span>
       </button>
+      <button mat-menu-item (click)="toggleTheme()">
+        <mat-icon>{{ getThemeIcon() }}</mat-icon>
+        <span>{{ getThemeText() }}</span>
+      </button>
+     
       <mat-divider></mat-divider>
       <button mat-menu-item (click)="logout()" class="logout-button">
         <mat-icon>exit_to_app</mat-icon>

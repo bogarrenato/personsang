@@ -96,3 +96,38 @@ p {
     background: #1976d2;
   }
 }
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--background-color);
+}
+
+.member-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-background);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.card-content {
+  padding: 1rem;
+  color: var(--text-color);
+  flex: 1;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--secondary-text-color);
+}

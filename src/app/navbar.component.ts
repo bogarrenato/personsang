@@ -8,6 +8,7 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { AuthStore } from '@my-workspace/shared/util-auth';
 import { Router } from '@angular/router';
+import { ThemeService } from '@my-workspace/shared/ui-common';
 
 @Component({
   selector: 'app-navbar',
@@ -26,6 +27,8 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   authStore = inject(AuthStore);
   router = inject(Router);
+  protected themeService = inject(ThemeService);
+  isDarkTheme = this.themeService.isDarkTheme;
 
   getProfileImage(): string {
     // Return a default avatar if no profile image is available
@@ -44,5 +47,17 @@ export class NavbarComponent {
 
   navigateToMembers() {
     this.router.navigate(['/members']);
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
+
+  getThemeIcon(): string {
+    return this.isDarkTheme() ? 'light_mode' : 'dark_mode';
+  }
+
+  getThemeText(): string {
+    return this.isDarkTheme() ? 'Light Mode' : 'Dark Mode';
   }
 }

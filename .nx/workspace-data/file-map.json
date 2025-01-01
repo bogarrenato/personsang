@@ -368,7 +368,7 @@
         },
         {
           "file": "src/app/login.component.ts",
-          "hash": "14571018650745050825",
+          "hash": "4907794596382247839",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -381,7 +381,7 @@
         },
         {
           "file": "src/app/navbar.component.html",
-          "hash": "5289202387271535289"
+          "hash": "2328536132951476484"
         },
         {
           "file": "src/app/navbar.component.scss",
@@ -396,13 +396,14 @@
         },
         {
           "file": "src/app/navbar.component.ts",
-          "hash": "10802509152842120526",
+          "hash": "6890723216088542652",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
             "npm:@angular/material",
             "util-auth",
-            "npm:@angular/router"
+            "npm:@angular/router",
+            "ui-common"
           ]
         },
         {
@@ -432,7 +433,7 @@
         },
         {
           "file": "src/styles/_material-theme.scss",
-          "hash": "2250985671254692295"
+          "hash": "8263998529258387814"
         },
         {
           "file": "src/test-setup.ts",
@@ -687,7 +688,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.scss",
-          "hash": "8689070684209975423"
+          "hash": "2275414090577768250"
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.spec.ts",

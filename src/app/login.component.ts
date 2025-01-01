@@ -63,14 +63,6 @@ export class LoginComponent implements OnInit {
       this.isDarkTheme.set(savedTheme === 'dark');
       this.applyTheme(savedTheme === 'dark');
     }
-
-    // Effect a téma változásának követésére
-    // effect(() => {
-    //   const isDark = this.isDarkTheme();
-    //   this.applyTheme(isDark);
-    //   localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    //   // this.router.navigate(['/dashboard']);
-    // });
   }
 
   async onSubmit() {
