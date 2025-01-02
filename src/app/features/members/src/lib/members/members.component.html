@@ -5,12 +5,18 @@
   [pageSizeOptions]="[5, 10, 25]"
   (page)="onPageChange($event)"
 />
-<div class="members-grid">
 
-  <article class="member-card" *ngFor="let member of store.members()">
-    <!-- {{ member | json }} -->
+@if (loading()) { LOADING VAN! } @if(!loading()) {
+<div class="members-grid">
+  @for (member of store.members(); track member.userName) {
+  <article class="member-card">
     <header class="card-header">
-      <img [src]="member.photoUrl" [alt]="member.knownAs" />
+      <img
+        [src]="member.photoUrl"
+        [alt]="member.knownAs"
+        loading="lazy"
+        class="member-image"
+      />
       <div class="card-details">
         <h2>{{ member.knownAs }}</h2>
         <div class="location"><mat-icon>place</mat-icon> {{ member.city }}</div>
@@ -36,4 +42,6 @@
       <mat-icon>arrow_forward</mat-icon>
     </button>
   </article>
+  }
 </div>
+}

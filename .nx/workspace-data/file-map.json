@@ -381,11 +381,11 @@
         },
         {
           "file": "src/app/navbar.component.html",
-          "hash": "2328536132951476484"
+          "hash": "7998897431910170497"
         },
         {
           "file": "src/app/navbar.component.scss",
-          "hash": "16165689210206756304"
+          "hash": "18446481134869136608"
         },
         {
           "file": "src/app/navbar.component.spec.ts",
@@ -433,7 +433,7 @@
         },
         {
           "file": "src/styles/_material-theme.scss",
-          "hash": "8263998529258387814"
+          "hash": "14117534757826898961"
         },
         {
           "file": "src/test-setup.ts",
@@ -661,7 +661,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/member-details/member-details.component.scss",
-          "hash": "5887100957922632458"
+          "hash": "3854967582958893440"
         },
         {
           "file": "src/app/features/members/src/lib/member-details/member-details.component.spec.ts",
@@ -684,11 +684,11 @@
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.html",
-          "hash": "7603421957667694726"
+          "hash": "6716381856436550824"
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.scss",
-          "hash": "2275414090577768250"
+          "hash": "9100464751174205465"
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.spec.ts",
@@ -699,7 +699,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.ts",
-          "hash": "16091580059792287230",
+          "hash": "4058185042993563328",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",

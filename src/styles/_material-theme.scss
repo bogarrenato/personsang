@@ -1,59 +1,143 @@
 @use '@angular/material' as mat;
+
 html {
   color-scheme: light;
   @include mat.theme(
     (
-      color: mat.$violet-palette,
-      typography: Roboto,
+      color: (
+        primary: mat.$violet-palette,
+        tertiary: mat.$orange-palette,
+        theme-type: light,
+      ),
+      typography: (
+        plain-family: Roboto,
+        brand-family: Roboto,
+        bold-weight: 700,
+        medium-weight: 500,
+        regular-weight: 400,
+      ),
       density: 0,
     )
   );
 
-  --background-color: #f5f5f5;
-  --card-background: #ffffff;
-  --text-color: rgba(0, 0, 0, 0.87);
-  --secondary-text-color: rgba(0, 0, 0, 0.6);
-  --border-color: rgba(0, 0, 0, 0.12);
+  --background-color: var(--mat-sys-color-surface);
+  --card-background: var(--mat-sys-color-surface-container);
+  --text-color: var(--mat-sys-color-on-surface);
+  --secondary-text-color: var(--mat-sys-color-on-surface-variant);
+  --border-color: var(--mat-sys-color-outline);
+
+  .mdc-menu-surface {
+    background-color: var(--card-background) !important;
+  }
+
+  .mdc-menu-surface.mat-mdc-select-panel {
+    background-color: var(--card-background) !important;
+  }
+
+  .mat-mdc-menu-content {
+    background-color: var(--card-background) !important;
+  }
+
+  .mat-mdc-menu-item {
+    .mdc-list-item__primary-text {
+      color: var(--text-color) !important;
+    }
+
+    &:hover {
+      background: var(--mat-sys-color-surface-container-highest) !important;
+    }
+  }
+
+  .mdc-menu-surface {
+    background-color: white !important;
+  }
+
+  .mdc-menu-surface.mat-mdc-select-panel {
+    background-color: white !important;
+  }
+
+  .mat-mdc-menu-content {
+    background-color: white !important;
+  }
+
+  @include mat.paginator-overrides(
+    (
+      container-background-color: #ffebee,
+      // Light red background
+      container-text-color: #d32f2f,
+      // Darker red text
+      enabled-icon-color: #d32f2f // Red icons,
+    )
+  );
 }
 
 html.dark-theme {
   color-scheme: dark;
   @include mat.theme(
     (
-      color: mat.$azure-palette,
-      typography: Roboto,
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$orange-palette,
+        theme-type: dark,
+      ),
+      typography: (
+        plain-family: Roboto,
+        brand-family: Roboto,
+        bold-weight: 700,
+        medium-weight: 500,
+        regular-weight: 400,
+      ),
       density: 0,
     )
   );
 
-  --background-color: #121212;
-  --card-background: #242424;
-  --text-color: rgba(255, 255, 255, 0.87);
-  --secondary-text-color: rgba(255, 255, 255, 0.6);
-  --border-color: rgba(255, 255, 255, 0.12);
-}
+  --background-color: var(--mat-sys-color-surface);
+  --card-background: var(--mat-sys-color-surface-container);
+  --text-color: var(--mat-sys-color-on-surface);
+  --secondary-text-color: var(--mat-sys-color-on-surface-variant);
+  --border-color: var(--mat-sys-color-outline);
 
-.mat-mdc-button,
-.mat-mdc-raised-button,
-.mat-mdc-outlined-button,
-.mat-mdc-flat-button {
-  &:focus-visible {
-    outline: 2px solid blue;
-    outline-offset: 2px;
+  .mdc-menu-surface {
+    background-color: #121212 !important;
   }
+
+  .mdc-menu-surface.mat-mdc-select-panel {
+    background-color: #121212 !important;
+  }
+
+  .mat-mdc-menu-content {
+    background-color: #121212 !important;
+  }
+
+  @include mat.paginator-overrides(
+    (
+      container-background-color: green,
+      container-text-color: red,
+
+      disabled-icon-color: rgba(255, 255, 255, 0.5),
+    )
+  );
+
+  // .mat-paginator {
+  //   --container-text-color: #ffffff;
+  //   --container-background-color: #2196f3; // Kék sötét téma
+  // }
+
+  // .mat-mdc-paginator-touch-target{
+  //   color: red !important;
+  // }
+
+  .mat-mdc-paginator {
+    background-color: black; // Dark blue background
+
+    .mat-mdc-paginator-container {
+      color: #ffffff; // White text
+    }
+
+    .mat-mdc-select {
+      color: yellow;
+    }
+  }
+
+  // .mat-mdc-notche
 }
-
-// $primary: mat.m2-define-palette(mat.$m2-indigo-palette);
-// $accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
-// $theme: mat.m2-define-light-theme((
-//   color: (
-//     primary: $primary,
-//     accent: $accent,
-//   ),
-// ));
-// @include mat.all-component-themes($theme);
-
-// $mat-button-border-radius: 200px;
-
-// // Az összes Angular Material komponens témáját inicializálja.
-// @include mat.all-component-themes($theme);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 // import { Member } from './member.model';
 import { inject } from '@angular/core';
@@ -88,10 +88,12 @@ export const MembersStore = signalStore(
     CommonModule,
     MatIconModule,
     MatTableModule,
+
     MatCardModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
   ],
+  standalone: true,
   templateUrl: './members.component.html',
   styleUrl: './members.component.scss',
 })

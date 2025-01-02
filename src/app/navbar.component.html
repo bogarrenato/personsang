@@ -1,6 +1,7 @@
 <mat-toolbar class="nav-toolbar">
   <div class="nav-container">
     <!-- App Logo -->
+    <!-- <mat-icon class="red" [color]="'error'">exit_to_app</mat-icon> -->
     <div class="logo-section">
       <img
         src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png"
@@ -42,8 +43,8 @@
      
       <mat-divider></mat-divider>
       <button mat-menu-item (click)="logout()" class="logout-button">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Logout</span>
+        <mat-icon class="icon" >exit_to_app</mat-icon>
+        <span class="red">Logout</span>
       </button>
     </mat-menu>
     }
