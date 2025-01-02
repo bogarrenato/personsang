@@ -1,92 +1,67 @@
 .details-container {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
-    padding: 2rem;
-    background: var(--background-color);
-    min-height: 100vh;
-  }
-  
-  .profile-section {
-    img {
-      width: 100%;
-      border-radius: 0.75rem;
-      margin-bottom: 1rem;
-    }
-  
-    .info {
-      color: var(--text-color);
-      
-      h1 {
-        margin: 0 0 1rem;
-      }
-  
-      .location {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--secondary-text-color);
-  
-        mat-icon {
-          color: var(--secondary-text-color);
-        }
-      }
-  
-      .stats {
-        margin-top: 1rem;
-        color: var(--secondary-text-color);
-  
-        div {
-          margin: 0.5rem 0;
-        }
-      }
-    }
-  }
-  
-  mat-tab-group {
-    color: var(--text-color);
-    padding: 1rem;
-    background: var(--card-background);
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--background-color);
+  min-height: 100vh;
+}
+
+.profile-section {
+  img {
+    width: 100%;
     border-radius: 0.75rem;
-  
-    ::ng-deep {
-      .mat-mdc-tab-header {
-        --mdc-secondary-navigation-tab-container-height: 48px;
-      }
-  
-      .mat-mdc-tab {
+    margin-bottom: 1rem;
+  }
+
+  .info {
+    color: var(--text-color);
+
+    h1 {
+      margin: 0 0 1rem;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--secondary-text-color);
+
+      mat-icon {
         color: var(--secondary-text-color);
       }
-  
-      .mat-mdc-tab.mdc-tab--active {
-        color: var(--text-color);
-      }
-  
-      .mat-mdc-tab-body-content {
-        color: var(--text-color);
+    }
+
+    .stats {
+      margin-top: 1rem;
+      color: var(--secondary-text-color);
+
+      div {
+        margin: 0.5rem 0;
       }
     }
   }
-  
-  .photos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-  
-    img {
-      width: 100%;
-      border-radius: 0.5rem;
-    }
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+
+  img {
+    width: 100%;
+    border-radius: 0.5rem;
   }
-  
-  h3 {
-    color: var(--text-color);
-    margin: 1rem 0;
-  }
-  
-  p {
-    color: var(--secondary-text-color);
-    line-height: 1.6;
-    margin: 0.5rem 0;
-  }
+}
+
+h3 {
+  color: var(--text-color);
+  margin: 1rem 0;
+}
+
+p {
+  color: var(--secondary-text-color);
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
