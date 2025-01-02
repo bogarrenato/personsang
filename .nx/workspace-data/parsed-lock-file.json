@@ -2772,6 +2772,33 @@
         "hash": "sha512-KYar6W8nraZfSJspcK7Kp7hdj238X/FNauYbZyrqPBrtsXI1hvI4/KcRcRGP50aQoV7fkKDyJERlrQGMGTZUsA=="
       }
     },
+    "npm:@microsoft/signalr": {
+      "type": "npm",
+      "name": "npm:@microsoft/signalr",
+      "data": {
+        "version": "8.0.7",
+        "packageName": "@microsoft/signalr",
+        "hash": "sha512-PHcdMv8v5hJlBkRHAuKG5trGViQEkPYee36LnJQx4xHOQ5LL4X0nEWIxOp5cCtZ7tu+30quz5V3k0b1YNuc6lw=="
+      }
+    },
+    "npm:ws@7.5.10": {
+      "type": "npm",
+      "name": "npm:ws@7.5.10",
+      "data": {
+        "version": "7.5.10",
+        "packageName": "ws",
+        "hash": "sha512-+dbF1tHwZpXcbOJdVOkzLDxZP1ailvSxM6ZweXTegylPny803bFhA+vqBYw4s31NSAk4S2Qz+AKXK9a4wkdjcQ=="
+      }
+    },
+    "npm:ws": {
+      "type": "npm",
+      "name": "npm:ws",
+      "data": {
+        "version": "8.18.0",
+        "packageName": "ws",
+        "hash": "sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw=="
+      }
+    },
     "npm:@module-federation/bridge-react-webpack-plugin": {
       "type": "npm",
       "name": "npm:@module-federation/bridge-react-webpack-plugin",
@@ -5643,6 +5670,15 @@
         "hash": "sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ=="
       }
     },
+    "npm:abort-controller": {
+      "type": "npm",
+      "name": "npm:abort-controller",
+      "data": {
+        "version": "3.0.0",
+        "packageName": "abort-controller",
+        "hash": "sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg=="
+      }
+    },
     "npm:accepts": {
       "type": "npm",
       "name": "npm:accepts",
@@ -8244,6 +8280,15 @@
         "hash": "sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg=="
       }
     },
+    "npm:event-target-shim": {
+      "type": "npm",
+      "name": "npm:event-target-shim",
+      "data": {
+        "version": "5.0.1",
+        "packageName": "event-target-shim",
+        "hash": "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ=="
+      }
+    },
     "npm:eventemitter2": {
       "type": "npm",
       "name": "npm:eventemitter2",
@@ -8278,6 +8323,15 @@
         "version": "3.3.0",
         "packageName": "events",
         "hash": "sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q=="
+      }
+    },
+    "npm:eventsource": {
+      "type": "npm",
+      "name": "npm:eventsource",
+      "data": {
+        "version": "2.0.2",
+        "packageName": "eventsource",
+        "hash": "sha512-IzUmBGPR3+oUG9dUeXynyNmf91/3zUSJg1lCktzKw47OXuhco54U3r9B7O4XX+Rb1Itm9OZ2b0RkTs10bICOxA=="
       }
     },
     "npm:execa": {
@@ -8530,6 +8584,60 @@
         "version": "6.4.2",
         "packageName": "fdir",
         "hash": "sha512-KnhMXsKSPZlAhp7+IjUkRZKPb4fUyccpDrdFXbi4QL1qkmFh9kVY09Yox+n4MaOb3lHZ1Tv829C3oaaXoMYPDQ=="
+      }
+    },
+    "npm:fetch-cookie": {
+      "type": "npm",
+      "name": "npm:fetch-cookie",
+      "data": {
+        "version": "2.2.0",
+        "packageName": "fetch-cookie",
+        "hash": "sha512-h9AgfjURuCgA2+2ISl8GbavpUdR+WGAM2McW/ovn4tVccegp8ZqCKWSBR8uRdM8dDNlx5WdKRWxBYUwteLDCNQ=="
+      }
+    },
+    "npm:tough-cookie@4.1.4": {
+      "type": "npm",
+      "name": "npm:tough-cookie@4.1.4",
+      "data": {
+        "version": "4.1.4",
+        "packageName": "tough-cookie",
+        "hash": "sha512-Loo5UUvLD9ScZ6jh8beX1T6sO1w2/MpCRpEP7V280GKMVUQ0Jzar2U3UJPsrdbziLEMMhu3Ujnq//rhiFuIeag=="
+      }
+    },
+    "npm:tough-cookie": {
+      "type": "npm",
+      "name": "npm:tough-cookie",
+      "data": {
+        "version": "5.0.0",
+        "packageName": "tough-cookie",
+        "hash": "sha512-FRKsF7cz96xIIeMZ82ehjC3xW2E+O2+v11udrDYewUbszngYhsGa8z6YUMMzO9QJZzzyd0nGGXnML/TReX6W8Q=="
+      }
+    },
+    "npm:universalify@0.2.0": {
+      "type": "npm",
+      "name": "npm:universalify@0.2.0",
+      "data": {
+        "version": "0.2.0",
+        "packageName": "universalify",
+        "hash": "sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg=="
+      }
+    },
+    "npm:universalify@0.1.2": {
+      "type": "npm",
+      "name": "npm:universalify@0.1.2",
+      "data": {
+        "version": "0.1.2",
+        "packageName": "universalify",
+        "hash": "sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg=="
+      }
+    },
+    "npm:universalify": {
+      "type": "npm",
+      "name": "npm:universalify",
+      "data": {
+        "version": "2.0.1",
+        "packageName": "universalify",
+        "hash": "sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw=="
       }
     },
     "npm:figures": {
@@ -10159,51 +10267,6 @@
         "version": "20.0.3",
         "packageName": "jsdom",
         "hash": "sha512-SYhBvTh89tTfCD/CRdSOm13mOBa42iTaTyfyEWBdKcGdPxPtLFBXuHR8XHb33YNYaP+lLbmSvBTsnoesCNJEsQ=="
-      }
-    },
-    "npm:tough-cookie@4.1.4": {
-      "type": "npm",
-      "name": "npm:tough-cookie@4.1.4",
-      "data": {
-        "version": "4.1.4",
-        "packageName": "tough-cookie",
-        "hash": "sha512-Loo5UUvLD9ScZ6jh8beX1T6sO1w2/MpCRpEP7V280GKMVUQ0Jzar2U3UJPsrdbziLEMMhu3Ujnq//rhiFuIeag=="
-      }
-    },
-    "npm:tough-cookie": {
-      "type": "npm",
-      "name": "npm:tough-cookie",
-      "data": {
-        "version": "5.0.0",
-        "packageName": "tough-cookie",
-        "hash": "sha512-FRKsF7cz96xIIeMZ82ehjC3xW2E+O2+v11udrDYewUbszngYhsGa8z6YUMMzO9QJZzzyd0nGGXnML/TReX6W8Q=="
-      }
-    },
-    "npm:universalify@0.2.0": {
-      "type": "npm",
-      "name": "npm:universalify@0.2.0",
-      "data": {
-        "version": "0.2.0",
-        "packageName": "universalify",
-        "hash": "sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg=="
-      }
-    },
-    "npm:universalify@0.1.2": {
-      "type": "npm",
-      "name": "npm:universalify@0.1.2",
-      "data": {
-        "version": "0.1.2",
-        "packageName": "universalify",
-        "hash": "sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg=="
-      }
-    },
-    "npm:universalify": {
-      "type": "npm",
-      "name": "npm:universalify",
-      "data": {
-        "version": "2.0.1",
-        "packageName": "universalify",
-        "hash": "sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw=="
       }
     },
     "npm:jsesc": {
@@ -12564,6 +12627,15 @@
         "hash": "sha512-VqpjJZKadQB/PEbEwvFdO43Ax5dFBZ2UECszz8bQ7pi7wt//PWe1P6MN7eCnjsatYtBT6EuiClbjSWP2WrIoTw=="
       }
     },
+    "npm:set-cookie-parser": {
+      "type": "npm",
+      "name": "npm:set-cookie-parser",
+      "data": {
+        "version": "2.7.1",
+        "packageName": "set-cookie-parser",
+        "hash": "sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ=="
+      }
+    },
     "npm:shallow-clone": {
       "type": "npm",
       "name": "npm:shallow-clone",
@@ -13642,15 +13714,6 @@
         "version": "4.0.2",
         "packageName": "write-file-atomic",
         "hash": "sha512-7KxauUdBmSdWnmpaGFg+ppNjKF8uNLry8LyzjauQDOVONfFLNKrKvQOxZ/VuTIcS/gge/YNahf5RIIQWTSarlg=="
-      }
-    },
-    "npm:ws": {
-      "type": "npm",
-      "name": "npm:ws",
-      "data": {
-        "version": "8.18.0",
-        "packageName": "ws",
-        "hash": "sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw=="
       }
     },
     "npm:xml-name-validator": {
@@ -18076,6 +18139,31 @@
       "type": "static"
     },
     {
+      "source": "npm:@microsoft/signalr",
+      "target": "npm:abort-controller",
+      "type": "static"
+    },
+    {
+      "source": "npm:@microsoft/signalr",
+      "target": "npm:eventsource",
+      "type": "static"
+    },
+    {
+      "source": "npm:@microsoft/signalr",
+      "target": "npm:fetch-cookie",
+      "type": "static"
+    },
+    {
+      "source": "npm:@microsoft/signalr",
+      "target": "npm:node-fetch",
+      "type": "static"
+    },
+    {
+      "source": "npm:@microsoft/signalr",
+      "target": "npm:ws@7.5.10",
+      "type": "static"
+    },
+    {
       "source": "npm:@module-federation/bridge-react-webpack-plugin",
       "target": "npm:@module-federation/sdk",
       "type": "static"
@@ -21341,6 +21429,11 @@
       "type": "static"
     },
     {
+      "source": "npm:abort-controller",
+      "target": "npm:event-target-shim",
+      "type": "static"
+    },
+    {
       "source": "npm:accepts",
       "target": "npm:mime-types",
       "type": "static"
@@ -24198,6 +24291,36 @@
     {
       "source": "npm:fdir",
       "target": "npm:picomatch",
+      "type": "static"
+    },
+    {
+      "source": "npm:fetch-cookie",
+      "target": "npm:set-cookie-parser",
+      "type": "static"
+    },
+    {
+      "source": "npm:fetch-cookie",
+      "target": "npm:tough-cookie@4.1.4",
+      "type": "static"
+    },
+    {
+      "source": "npm:tough-cookie@4.1.4",
+      "target": "npm:psl",
+      "type": "static"
+    },
+    {
+      "source": "npm:tough-cookie@4.1.4",
+      "target": "npm:punycode",
+      "type": "static"
+    },
+    {
+      "source": "npm:tough-cookie@4.1.4",
+      "target": "npm:universalify@0.2.0",
+      "type": "static"
+    },
+    {
+      "source": "npm:tough-cookie@4.1.4",
+      "target": "npm:url-parse",
       "type": "static"
     },
     {

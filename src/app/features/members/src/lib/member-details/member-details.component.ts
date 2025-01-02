@@ -12,6 +12,7 @@ import { Member } from '../members/members.component';
 import { HttpClient } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { MemberMessagesComponent } from "../member-messages/member-messages.component";
 
 export const MemberDetailsStore = signalStore(
   { providedIn: 'root' },
@@ -30,7 +31,7 @@ export const MemberDetailsStore = signalStore(
 );
 @Component({
   selector: 'lib-member-details',
-  imports: [CommonModule, MatTabsModule, MatIconModule],
+  imports: [CommonModule, MatTabsModule, MatIconModule, MemberMessagesComponent],
   templateUrl: './member-details.component.html',
   styleUrl: './member-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

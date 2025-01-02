@@ -1,0 +1,66 @@
+<div class="chat-container">
+  <div class="messages-container">
+    @if (messageStore.loading()) {
+    <div class="loading-spinner">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+    }
+
+    <div class="messages-list" #scrollContainer>
+      @for (message of messageStore.messages(); track message.id) {
+      <mat-card
+        [ngClass]="{
+          received: message.senderUsername !== authStore.username(),
+          sent: message.senderUsername === authStore.username(),
+          active: message === messageStore.activeMessage()
+        }"
+       
+      >
+        <mat-card-content>
+          <div class="message-header">
+            <span class="username">{{ message.senderUsername }}</span>
+            <span class="time">{{ message.messageSent | date : 'short' }}</span>
+          </div>
+          <div class="message-content">
+            {{ message.content }}
+          </div>
+          @if (message.dateRead) {
+          <div class="read-status">
+            Read: {{ message.dateRead | date : 'short' }}
+          </div>
+          }
+        </mat-card-content>
+      </mat-card>
+      }
+    </div>
+
+    <form
+      [formGroup]="messageForm"
+      (ngSubmit)="sendMessage()"
+      class="reply-form"
+    >
+      <mat-form-field appearance="fill" class="reply-input">
+        <mat-label
+          >Reply to
+          {{ messageStore.activeMessage()?.senderUsername }}</mat-label
+        >
+        <input
+          matInput
+          formControlName="content"
+          placeholder="Type a message..."
+        />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="messageForm.invalid || messageStore.sending()"
+        type="submit"
+      >
+        @if (messageStore.sending()) {
+        <mat-spinner diameter="20"></mat-spinner>
+        } @else { Send }
+      </button>
+    </form>
+  </div>
+</div>
