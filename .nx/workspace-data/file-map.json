@@ -433,7 +433,7 @@
         },
         {
           "file": "src/styles/_material-theme.scss",
-          "hash": "14117534757826898961"
+          "hash": "8643345107505927374"
         },
         {
           "file": "src/test-setup.ts",
@@ -661,7 +661,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/member-details/member-details.component.scss",
-          "hash": "7125505046427793562"
+          "hash": "1781559700396298767"
         },
         {
           "file": "src/app/features/members/src/lib/member-details/member-details.component.spec.ts",
@@ -684,7 +684,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.html",
-          "hash": "6716381856436550824"
+          "hash": "4394844396538972162"
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.scss",
@@ -699,7 +699,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.ts",
-          "hash": "4058185042993563328",
+          "hash": "6598151735686675583",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",

@@ -37,7 +37,12 @@ interface MembersState {
   pageIndex: number;
   pageSize: number;
 }
-
+interface PaginationHeader {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
+}
 export const MembersStore = signalStore(
   { providedIn: 'root' },
   withState<MembersState>({
@@ -54,8 +59,11 @@ export const MembersStore = signalStore(
       async loadMembers(pageIndex: number, pageSize: number) {
         patchState(store, { loading: true });
 
+        // Convert frontend 0-based index to backend 1-based index
+        const backendPageNumber = pageIndex + 1;
+
         const params = new HttpParams()
-          .set('pageNumber', pageIndex.toString())
+          .set('pageNumber', backendPageNumber.toString())
           .set('pageSize', pageSize.toString());
 
         try {
@@ -66,12 +74,31 @@ export const MembersStore = signalStore(
             })
           );
 
+          // Alapértelmezett értékek
+          let currentPage = pageIndex;
+          let itemsPerPage = pageSize;
+          let totalItems = 0;
+
+          // Pagination header feldolgozása
+          const paginationHeader = response.headers.get('Pagination');
+          if (paginationHeader) {
+            try {
+              const parsed = JSON.parse(paginationHeader) as PaginationHeader;
+              // Csak akkor frissítjük az értékeket, ha sikeresen parse-oltuk
+              currentPage = parsed.currentPage > 0 ? parsed.currentPage - 1 : 0;
+              itemsPerPage = parsed.itemsPerPage;
+              totalItems = parsed.totalItems;
+            } catch (error) {
+              console.error('Failed to parse pagination header:', error);
+            }
+          }
+
           patchState(store, {
             members: response.body ?? [],
-            total: Number(response.headers.get('Pagination-Total')),
+            total: totalItems,
+            pageIndex: currentPage,
+            pageSize: itemsPerPage,
             loading: false,
-            pageIndex,
-            pageSize,
           });
         } catch (error) {
           patchState(store, { loading: false });
@@ -81,14 +108,12 @@ export const MembersStore = signalStore(
     };
   })
 );
-
 @Component({
   selector: 'lib-members',
   imports: [
     CommonModule,
     MatIconModule,
     MatTableModule,
-
     MatCardModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
@@ -109,17 +134,19 @@ export class MembersComponent implements OnInit {
   pageSize = this.store.pageSize;
 
   displayedColumns = ['photo', 'username', 'age', 'city'];
+  pageSizeOptions = [3, 5, 10, 25]; // Added 3 to match initial pageSize
 
   ngOnInit() {
-    this.store.loadMembers(0, 3);
+    // Initial load with stored pageIndex and pageSize
+    this.store.loadMembers(this.pageIndex(), this.pageSize());
   }
 
   onPageChange(event: PageEvent) {
+    // Update store and load new data
     this.store.loadMembers(event.pageIndex, event.pageSize);
   }
 
   navigateToDetails(username: string): void {
-    console.log('Navigating to member details:', username);
     this.router.navigate([username], { relativeTo: this.activatedRoute });
   }
 }

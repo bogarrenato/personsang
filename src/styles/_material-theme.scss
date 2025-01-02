@@ -66,7 +66,7 @@ html {
       // Light red background
       container-text-color: #d32f2f,
       // Darker red text
-      enabled-icon-color: #d32f2f // Red icons,
+      enabled-icon-color: green // Red icons,,
     )
   );
 }
@@ -113,7 +113,7 @@ html.dark-theme {
     (
       container-background-color: green,
       container-text-color: red,
-
+      enabled-icon-color: blue,
       disabled-icon-color: rgba(255, 255, 255, 0.5),
     )
   );
