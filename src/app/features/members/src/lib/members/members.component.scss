@@ -24,6 +24,8 @@
   border-radius: 0.75rem;
   overflow: hidden;
   transition: transform 0.2s ease;
+  padding-bottom: 4px; // Extra padding a gomb outline-nak
+  position: relative; // Biztosítja, hogy az outline ne vágódjon le
   
   &:hover {
     transform: translateY(-4px);
@@ -154,4 +156,90 @@ p {
     transform: scale(1);
     opacity: 0;
   }
+}
+
+
+.card-details {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  /* Sötétebb, átlátszó háttér a jobb olvashatóságért */
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.9)
+  );
+  color: white; /* Mindig fehér szöveg */
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: white; /* Biztosítjuk hogy a név is mindig fehér */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Árnyék a jobb olvashatóságért */
+  }
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.9; /* Növeljük az átlátszóság értékét */
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.9); /* Világos szöveg */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  
+  /* Az ikon és szöveg mindig világos */
+  svg {
+    fill: white;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+  }
+}
+
+/* Opcionális: Ha további védelmet szeretnénk a szöveg olvashatóságához */
+.card-header {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%,
+      rgba(0, 0, 0, 0.4) 75%,
+      rgba(0, 0, 0, 0.6)
+    );
+    pointer-events: none; /* Hogy ne zavarjon az interakcióban */
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+  }
+}
+
+.action-button {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  
+  .button-text {
+    order: 1;
+  }
+  
+  .button-icon {
+    order: 2;
+    margin: 0; // Reset any Material margins
+  }
+}
+
+.button-container {
+  position: relative;
+  padding: 2px; // Extra padding minden irányban
 }

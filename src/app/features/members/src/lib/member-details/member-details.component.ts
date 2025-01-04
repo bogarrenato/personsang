@@ -1,17 +1,20 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
+  ViewChild,
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { firstValueFrom, map, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject, firstValueFrom, map, skip, take, takeUntil, tap } from 'rxjs';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { Member } from '../members/members.component';
 import { HttpClient } from '@angular/common/http';
-import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
+import { MatTabChangeEvent, MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MemberMessagesComponent, MessageStore } from "../member-messages/member-messages.component";
 
@@ -45,32 +48,57 @@ export const MemberDetailsStore = signalStore(
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MemberDetailsComponent implements OnInit, OnDestroy {
+  @ViewChild('tabGroup') tabGroup!: MatTabGroup;
+  
   protected store = inject(MemberDetailsStore);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private messageStore = inject(MessageStore);
+  private destroy$ = new Subject<void>();
+
+  // Új property a selected tab indexhez
+  protected selectedTabIndex = 0;
 
   ngOnInit() {
     this.route.params
       .pipe(
         map((params) => params['username']),
         tap((username) => {
-          // console.log(username);
           this.store.loadMember(username);
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
+
+    // Query params figyelése és selectedTabIndex beállítása
+    this.route.queryParams
+      .pipe(
+        takeUntil(this.destroy$),
+        tap(params => {
+          if (params['tab'] !== undefined) {
+            this.selectedTabIndex = parseInt(params['tab']);
+          }
         })
       )
       .subscribe();
   }
 
-
   onTabChange(event: MatTabChangeEvent) {
-    // Ha elnavigálunk a Messages tabról, leállítjuk a connection-t
     if (event.index !== 3) {
       this.messageStore.stopHubConnection();
     }
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { tab: event.index },
+      queryParamsHandling: 'merge',
+      replaceUrl: true
+    });
   }
 
   ngOnDestroy() {
-    // Komponens megsemmisülésekor is állítsuk le a connection-t
     this.messageStore.stopHubConnection();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

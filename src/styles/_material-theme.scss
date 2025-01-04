@@ -66,9 +66,14 @@ html {
       // Light red background
       container-text-color: #d32f2f,
       // Darker red text
-      enabled-icon-color: green // Red icons,,
+      enabled-icon-color: green // Red icons,,,
     )
   );
+
+  .mat-mdc-button-base:focus-visible {
+    outline: 2px solid green;
+    outline-offset: 2px; // Ez egy kis térközt ad az outline és a gomb között
+  }
 }
 
 html.dark-theme {
@@ -137,6 +142,11 @@ html.dark-theme {
     .mat-mdc-select {
       color: yellow;
     }
+  }
+
+  .mat-mdc-button-base:focus-visible {
+    outline: 2px solid green;
+    outline-offset: 2px;
   }
 
   // .mat-mdc-notche

@@ -1,35 +1,83 @@
-<div class="details-container" *ngIf="store.member() as member">
-  <div class="profile-section">
-    <img [src]="member.photoUrl" [alt]="member.knownAs" />
-    <div class="info">
-      <h1>{{ member.knownAs }}</h1>
-      <div class="location">
-        <mat-icon>place</mat-icon>
+<div class="member__container" *ngIf="store.member() as member">
+  <div class="member__profile">
+    <img
+      class="member__profile-image"
+      [src]="member.photoUrl"
+      [alt]="member.knownAs"
+    />
+    <div class="member__profile-info">
+      <h1 class="member__profile-title">{{ member.knownAs }}</h1>
+      <div class="member__profile-location">
+        <mat-icon class="member__profile-location-icon">place</mat-icon>
         {{ member.city }}, {{ member.country }}
       </div>
-      <div class="stats">
-        <div>Age: {{ member.age }}</div>
-        <div>Last Active: {{ member.lastActive | date }}</div>
+      <div class="member__profile-stats">
+        <div class="member__profile-stats-item">Age: {{ member.age }}</div>
+        <div class="member__profile-stats-item">
+          Last Active: {{ member.lastActive | date }}
+        </div>
       </div>
     </div>
   </div>
 
   <mat-tab-group
     #tabGroup="matTabGroup"
+    [selectedIndex]="selectedTabIndex"
     (selectedTabChange)="onTabChange($event)"
   >
     <mat-tab label="About">
-      <h3>Description</h3>
-      <p>{{ member.introduction }}</p>
-      <h3>Looking For</h3>
-      <p>{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
+      <h3 class="member__content-heading">Description</h3>
+      <p class="member__content-text">{{ member.introduction }}</p>
+      <h3 class="member__content-heading">Looking For</h3>
+      <p class="member__content-text">{{ member.lookingFor }}</p>
     </mat-tab>
     <mat-tab label="Interests">
-      <p>{{ member.interests }}</p>
+      <p class="member__content-text">{{ member.interests }}</p>
     </mat-tab>
     <mat-tab label="Photos">
-      <div class="photos-grid">
+      <div class="member__photos-grid">
         <img
+          class="member__photos-image"
           *ngFor="let photo of member.photos"
           [src]="photo.url"
           [alt]="member.knownAs"

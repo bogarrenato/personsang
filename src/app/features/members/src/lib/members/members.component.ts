@@ -21,6 +21,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { MatButtonModule } from '@angular/material/button';
 // import { environment } from '../environments/environment';
 
 @Pipe({
@@ -136,6 +137,7 @@ export const MembersStore = signalStore(
     MatTableModule,
     IncludesPipe,
     MatCardModule,
+    MatButtonModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
   ],
