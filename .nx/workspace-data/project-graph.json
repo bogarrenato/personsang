@@ -14624,6 +14624,11 @@
       },
       {
         "source": "members",
+        "target": "npm:@angular/animations",
+        "type": "static"
+      },
+      {
+        "source": "members",
         "target": "npm:jest-preset-angular",
         "type": "static"
       }

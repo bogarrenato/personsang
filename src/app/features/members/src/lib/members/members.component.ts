@@ -13,12 +13,19 @@ import { firstValueFrom } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PresenceService } from '../member-messages/member-messages.component';
+import {
+  animate,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 // import { environment } from '../environments/environment';
-
 
 @Pipe({
   name: 'includes',
-  standalone: true
+  standalone: true,
 })
 export class IncludesPipe implements PipeTransform {
   transform(array: string[] | null, value: string): boolean {
@@ -133,6 +140,31 @@ export const MembersStore = signalStore(
     MatProgressSpinnerModule,
   ],
   standalone: true,
+  animations: [
+    trigger('staggerAnimation', [
+      transition('* => *', [
+        query(
+          ':enter',
+          [
+            style({
+              opacity: 0,
+              transform: 'translateY(10px)',
+            }),
+            stagger('75ms', [
+              animate(
+                '800ms ease-out',
+                style({
+                  opacity: 1,
+                  transform: 'translateY(0)',
+                })
+              ),
+            ]),
+          ],
+          { optional: true }
+        ),
+      ]),
+    ]),
+  ],
   templateUrl: './members.component.html',
   styleUrl: './members.component.scss',
 })
@@ -154,12 +186,10 @@ export class MembersComponent implements OnInit {
   pageSizeOptions = [3, 5, 10, 25]; // Added 3 to match initial pageSize
 
   ngOnInit() {
-    // Initial load with stored pageIndex and pageSize
     this.store.loadMembers(this.pageIndex(), this.pageSize());
   }
 
-  onPageChange(event: PageEvent) {
-    // Update store and load new data
+  onPageChange(event: PageEvent): void {
     this.store.loadMembers(event.pageIndex, event.pageSize);
   }
 
@@ -167,4 +197,3 @@ export class MembersComponent implements OnInit {
     this.router.navigate([username], { relativeTo: this.activatedRoute });
   }
 }
-

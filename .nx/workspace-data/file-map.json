@@ -348,11 +348,11 @@
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.html",
-          "hash": "9165324710379793683"
+          "hash": "10070143645943390902"
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.scss",
-          "hash": "1205963834819350608"
+          "hash": "5364997866195000527"
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.spec.ts",
@@ -363,14 +363,15 @@
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.ts",
-          "hash": "3426009800256809081",
+          "hash": "16585852749731335955",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
             "npm:@ngrx/signals",
             "npm:@angular/material",
             "npm:rxjs",
-            "npm:@angular/router"
+            "npm:@angular/router",
+            "npm:@angular/animations"
           ]
         },
         {

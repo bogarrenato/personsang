@@ -7,47 +7,53 @@
   aria-label="Select page of members"
 />
 
-@if (loading()) { LOADING VAN! } @if(!loading()) {
-<div class="members-grid">
-  @for (member of store.members(); track member.userName) {
-  <article class="member-card">
-    <header class="card-header">
-      <img
-        [src]="member.photoUrl"
-        [alt]="member.knownAs"
-        loading="lazy"
-        class="member-image"
-      />
-      <div class="card-details">
-        <div class="user-status">
-          <h2>{{ member.knownAs }}</h2>
-          @if (onlineUsers().includes(member.userName)) {
-            <div class="online-indicator"></div>
-          }
-        </div>
-        <div class="location"><mat-icon>place</mat-icon> {{ member.city }}</div>
-      </div>
-    </header>
+@if (loading()) {
+  <div class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+} @if(!loading()) {
+  <div class="members-grid" [@staggerAnimation]="members().length">
+    @for (member of members(); track member.userName) {
+      <article class="member-card">
+        <header class="card-header">
+          <img
+            [src]="member.photoUrl"
+            [alt]="member.knownAs"
+            loading="lazy"
+            class="member-image"
+          />
+          <div class="card-details">
+            <div class="user-status">
+              <h2>{{ member.knownAs }}</h2>
+              @if (onlineUsers().includes(member.userName)) {
+                <div class="online-indicator"></div>
+              }
+            </div>
+            <div class="location">
+              <mat-icon>place</mat-icon> {{ member.city }}
+            </div>
+          </div>
+        </header>
 
-    <div class="card-content">
-      <div class="stats">
-        <div>
-          <span class="label">Age</span>
-          <span class="value">{{ member.age }}</span>
+        <div class="card-content">
+          <div class="stats">
+            <div>
+              <span class="label">Age</span>
+              <span class="value">{{ member.age }}</span>
+            </div>
+            <div>
+              <span class="label">Last Active</span>
+              <span class="value">{{ member.lastActive | date }}</span>
+            </div>
+          </div>
+          <p>{{ member.introduction }}</p>
         </div>
-        <div>
-          <span class="label">Last Active</span>
-          <span class="value">{{ member.lastActive | date }}</span>
-        </div>
-      </div>
-      <p>{{ member.introduction }}</p>
-    </div>
 
-    <button class="card-action" (click)="navigateToDetails(member.userName)">
-      View Profile
-      <mat-icon>arrow_forward</mat-icon>
-    </button>
-  </article>
-  }
-</div>
+        <button class="card-action" (click)="navigateToDetails(member.userName)">
+          View Profile
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </article>
+    }
+  </div>
 }
