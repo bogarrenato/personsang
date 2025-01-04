@@ -14619,6 +14619,11 @@
       },
       {
         "source": "members",
+        "target": "npm:ngx-toastr",
+        "type": "static"
+      },
+      {
+        "source": "members",
         "target": "npm:jest-preset-angular",
         "type": "static"
       }
@@ -15005,6 +15010,11 @@
       {
         "source": "my-workspace",
         "target": "util-auth",
+        "type": "static"
+      },
+      {
+        "source": "my-workspace",
+        "target": "members",
         "type": "static"
       },
       {

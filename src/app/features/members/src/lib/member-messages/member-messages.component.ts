@@ -11,6 +11,8 @@ import {
   ViewChild,
   computed,
   inject,
+  input,
+  signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -46,6 +48,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 export interface Pagination {
   currentPage: number;
@@ -95,7 +99,7 @@ function parsePaginationHeader(header: string | null): Pagination {
   try {
     return JSON.parse(header);
   } catch {
-    console.warn('Failed to parse pagination header, using default values');
+    // console.warn('Failed to parse pagination header, using default values');
     return DEFAULT_PAGINATION;
   }
 }
@@ -124,7 +128,7 @@ export function getPaginatedResult<T>(
         return paginatedResult;
       }),
       catchError((error) => {
-        console.error('Error fetching paginated data:', error);
+        // console.error('Error fetching paginated data:', error);
         throw error;
       })
     );
@@ -146,6 +150,66 @@ export const environment = {
   apiUrl: 'https://localhost:5001/api/',
   hubUrl: 'https://localhost:5001/hubs/',
 };
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PresenceService {
+  hubUrl = environment.hubUrl;
+  private hubConnection: HubConnection | undefined;
+
+  // BehaviorSubject helyett Signal
+  private onlineUsersSource = signal<string[]>([]);
+  onlineUsers = this.onlineUsersSource.asReadonly();
+
+  constructor(private toastr: ToastrService, private router: Router) {}
+
+  createHubConnection(user: User) {
+    this.hubConnection = new HubConnectionBuilder()
+      .withUrl(this.hubUrl + 'presence', {
+        accessTokenFactory: () => user.token,
+      })
+      .withAutomaticReconnect()
+      .build();
+
+    this.hubConnection.start().catch((error) => console.log(error));
+
+    this.hubConnection.on('UserIsOnline', (username) => {
+      // Signal update online users
+      this.onlineUsersSource.update((users: string[]) => [...users, username]);
+    });
+
+    this.hubConnection.on('UserIsOffline', (username) => {
+      // Signal update offline users
+      this.onlineUsersSource.update((users: string[]) =>
+        users.filter((x) => x !== username)
+      );
+    });
+
+    this.hubConnection.on('GetOnlineUsers', (usernames: string[]) => {
+      // Signal set online users
+      this.onlineUsersSource.set(usernames);
+    });
+
+    this.hubConnection.on('NewMessageReceived', ({ username, knownAs }) => {
+      this.toastr
+        .info(knownAs + ' has sent you a new message!')
+        .onTap.pipe(take(1))
+        .subscribe(() =>
+          this.router.navigateByUrl('/members/' + username + '?tab=3')
+        );
+    });
+  }
+
+  stopHubConnection() {
+    if (!this.hubConnection) return;
+    this.hubConnection.stop().catch((error) => console.log(error));
+  }
+}
+
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -182,17 +246,15 @@ export class MessageService {
       });
     });
 
-    this.hubConnection.on('UpdatedGroup', (group: Group) => {
-      if (group.connections.some((x) => x.username === otherUsername)) {
-        this.messageThread$.pipe(take(1)).subscribe((messages) => {
-          messages.forEach((message) => {
-            if (!message.dateRead) {
-              message.dateRead = new Date(Date.now());
-            }
-          });
-          this.messageThreadSource.next([...messages]);
-        });
-      }
+    this.hubConnection.on('UpdatedGroup', (group: Group) => {  // Itt group és nem {connections}
+      this.messageThread$.pipe(take(1)).subscribe((messages) => {  // take(1) kell, különben memory leak!
+        // Új tömböt hozunk létre a változások miatt
+        const updatedMessages = messages.map(message => ({
+          ...message,
+          dateRead: message.dateRead || new Date()
+        }));
+        this.messageThreadSource.next(updatedMessages);
+      });
     });
   }
 
@@ -344,23 +406,26 @@ export const MessageStore = signalStore(
 })
 export class MemberMessagesComponent implements OnInit, OnDestroy {
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
-  @Input() username = 'todd';
+  username = input.required<string>();
   messageForm: FormGroup;
   protected readonly messageStore = inject(MessageStore);
   protected readonly authStore = inject(AuthStore);
   private destroy$ = new Subject<void>();
 
   constructor(private fb: FormBuilder, private messageService: MessageService) {
-    this.messageForm = this.fb.group({
-      content: ['']  // Először validátorok nélkül hozzuk létre
-    }, {
-      updateOn: 'submit' // Form szinten állítjuk be, hogy csak submit-nál validáljon
-    });
+    this.messageForm = this.fb.group(
+      {
+        content: [''], // Először validátorok nélkül hozzuk létre
+      },
+      {
+        updateOn: 'submit', // Form szinten állítjuk be, hogy csak submit-nál validáljon
+      }
+    );
   }
 
   ngOnInit() {
     if (this.username) {
-      this.messageStore.loadMessageThread(this.username);
+      this.messageStore.loadMessageThread(this.username());
     }
 
     // Figyelje az új üzeneteket és scrollozzon le
@@ -394,9 +459,9 @@ export class MemberMessagesComponent implements OnInit, OnDestroy {
   async sendMessage() {
     if (this.messageForm.valid) {
       const content = this.messageForm.get('content')?.value;
-      await this.messageStore.sendMessage(this.username, content);
+      await this.messageStore.sendMessage(this.username(), content);
       this.messageForm.reset();
-      
+
       // Üzenet küldése után azonnal scrollozzon le
       setTimeout(() => this.scrollToBottom(), 100);
     }

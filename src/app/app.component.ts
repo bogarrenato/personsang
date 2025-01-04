@@ -1,6 +1,7 @@
 import {
   Component,
   Injectable,
+  OnInit,
   computed,
   effect,
   inject,
@@ -20,6 +21,7 @@ import { firstValueFrom } from 'rxjs';
 import { patchState } from '@ngrx/signals';
 import { DOCUMENT } from '@angular/common';
 import { NavbarComponent } from './navbar.component';
+import { PresenceService } from './features/members/src/lib/member-messages/member-messages.component';
 
 export interface IAuthService {
   login(username: string, password: string): Promise<void>;
@@ -114,4 +116,14 @@ export const LoginStore = signalStore(
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  presenceService = inject(PresenceService);
+  ngOnInit(): void {
+    const storedUser = sessionStorage.getItem('user');
+    console.log(storedUser)
+    if (!storedUser) return;
+
+    const user = JSON.parse(storedUser);
+    this.presenceService.createHubConnection(user);
+  }
+}

@@ -3,12 +3,7 @@
     <!-- App Logo -->
     <!-- <mat-icon class="red" [color]="'error'">exit_to_app</mat-icon> -->
     <div class="logo-section">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png"
-        alt="App Logo"
-        class="app-logo"
-      />
-      <span class="app-name">MyApp</span>
+      <span class="app-name" style="cursor: pointer;" (click)="navigateToMembers()">MyApp</span>
     </div>
 
     <!-- User Profile Section -->
@@ -40,10 +35,10 @@
         <mat-icon>{{ getThemeIcon() }}</mat-icon>
         <span>{{ getThemeText() }}</span>
       </button>
-     
+
       <mat-divider></mat-divider>
       <button mat-menu-item (click)="logout()" class="logout-button">
-        <mat-icon class="icon" >exit_to_app</mat-icon>
+        <mat-icon class="icon">exit_to_app</mat-icon>
         <span class="red">Logout</span>
       </button>
     </mat-menu>

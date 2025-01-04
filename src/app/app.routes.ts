@@ -15,9 +15,9 @@ export const appRoutes: Route[] = [
       {
         path: 'members',
         loadChildren: () => {
-          console.log('Trying to load members module');
+          // console.log('Trying to load members module');
           return import('@features/members').then((m) => {
-            console.log('Loaded module:', m);
+            // console.log('Loaded module:', m);
             return m.membersRoutes;
           });
         }

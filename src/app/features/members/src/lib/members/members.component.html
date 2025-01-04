@@ -19,7 +19,12 @@
         class="member-image"
       />
       <div class="card-details">
-        <h2>{{ member.knownAs }}</h2>
+        <div class="user-status">
+          <h2>{{ member.knownAs }}</h2>
+          @if (onlineUsers().includes(member.userName)) {
+            <div class="online-indicator"></div>
+          }
+        </div>
         <div class="location"><mat-icon>place</mat-icon> {{ member.city }}</div>
       </div>
     </header>

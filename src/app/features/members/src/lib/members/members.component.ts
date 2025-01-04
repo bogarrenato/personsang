@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 // import { Member } from './member.model';
@@ -12,7 +12,20 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PresenceService } from '../member-messages/member-messages.component';
 // import { environment } from '../environments/environment';
+
+
+@Pipe({
+  name: 'includes',
+  standalone: true
+})
+export class IncludesPipe implements PipeTransform {
+  transform(array: string[] | null, value: string): boolean {
+    if (!array) return false;
+    return array.includes(value);
+  }
+}
 export interface Member {
   id: number;
   userName: string;
@@ -114,6 +127,7 @@ export const MembersStore = signalStore(
     CommonModule,
     MatIconModule,
     MatTableModule,
+    IncludesPipe,
     MatCardModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
@@ -126,12 +140,15 @@ export class MembersComponent implements OnInit {
   store = inject(MembersStore);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly presenceService = inject(PresenceService);
 
   members = this.store.members;
   loading = this.store.loading;
   total = this.store.total;
   pageIndex = this.store.pageIndex;
   pageSize = this.store.pageSize;
+
+  onlineUsers = this.presenceService.onlineUsers;
 
   displayedColumns = ['photo', 'username', 'age', 'city'];
   pageSizeOptions = [3, 5, 10, 25]; // Added 3 to match initial pageSize
@@ -150,3 +167,4 @@ export class MembersComponent implements OnInit {
     this.router.navigate([username], { relativeTo: this.activatedRoute });
   }
 }
+

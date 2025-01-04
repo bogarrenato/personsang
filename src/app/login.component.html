@@ -1,14 +1,4 @@
-<div class="login-container" [class.dark-theme]="isDarkTheme()">
-  <button
-    mat-icon-button
-    class="theme-toggle"
-    (click)="toggleTheme()"
-    [attr.aria-label]="
-      isDarkTheme() ? 'Switch to light theme' : 'Switch to dark theme'
-    "
-  >
-    <mat-icon>{{ isDarkTheme() ? 'light_mode' : 'dark_mode' }}</mat-icon>
-  </button>
+<div class="login-container" >
   <form
     [formGroup]="loginForm"
     (ngSubmit)="onSubmit()"

@@ -8,7 +8,7 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 
 // libs/shared/auth/src/lib/types/request-state.ts
 export type RequestState<TData, TError = Error> = {
@@ -48,6 +48,10 @@ export class AuthService {
 
   login(credentials: LoginCredentials) {
     return this.http.post<User>(`${this.API_URL}account/login`, credentials);
+  }
+
+  getCurrentUser(): Observable<User> {
+    return this.http.get<User>('https://localhost:5001/api/account/current');
   }
 }
 
@@ -107,11 +111,14 @@ export const AuthStore = signalStore(
         try {
           const user = await firstValueFrom(authService.login(credentials));
           tokenService.setToken(user.token);
+          console.log(user);
+          sessionStorage.setItem('user', JSON.stringify(user));
 
           patchState(store, {
             loginRequest: { data: user, isLoading: false, error: null },
             token: user.token,
           });
+          router.navigate(['/members']);
         } catch (error) {
           patchState(store, {
             loginRequest: {
@@ -129,16 +136,22 @@ export const AuthStore = signalStore(
         const token = tokenService.getToken();
         if (!token) return;
 
-        const credentials = {
-          username: 'lisa',
-          password: 'Pa$$w0rd',
-        };
+        const storedUser = sessionStorage.getItem('user');
+        if (!storedUser) return;
 
         try {
-          await this.login(credentials);
-          // router.navigate(['/dashboard']);
+          const user = JSON.parse(storedUser);
+          patchState(store, {
+            loginRequest: {
+              data: user,
+              isLoading: false,
+              error: null,
+            },
+            token: token,
+          });
         } catch (error) {
           tokenService.removeToken();
+          sessionStorage.removeItem('user');
         }
       },
     };

@@ -25,7 +25,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const authStore = inject(AuthStore);
   const token = authStore.token();
 
-  console.warn(token);
+
   if (token) {
     const authReq = req.clone({
       setHeaders: {

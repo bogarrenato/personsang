@@ -176,7 +176,7 @@
         },
         {
           "file": "libs/shared/util-auth/src/lib/state/auth.state.ts",
-          "hash": "16468028041693231139",
+          "hash": "4303173930228429882",
           "deps": [
             "npm:@angular/common",
             "npm:@angular/core",
@@ -290,7 +290,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/member-details/member-details.component.html",
-          "hash": "7938393202038334007"
+          "hash": "15330735962451078054"
         },
         {
           "file": "src/app/features/members/src/lib/member-details/member-details.component.scss",
@@ -305,7 +305,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/member-details/member-details.component.ts",
-          "hash": "14873322238643781657",
+          "hash": "4435475180844847895",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -332,7 +332,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/member-messages/member-messages.component.ts",
-          "hash": "11138887164155507236",
+          "hash": "4954107231746157539",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -341,16 +341,18 @@
             "util-auth",
             "npm:@ngrx/signals",
             "npm:@angular/material",
-            "npm:@angular/forms"
+            "npm:@angular/forms",
+            "npm:ngx-toastr",
+            "npm:@angular/router"
           ]
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.html",
-          "hash": "4394844396538972162"
+          "hash": "9165324710379793683"
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.scss",
-          "hash": "8099818174534217355"
+          "hash": "1205963834819350608"
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.spec.ts",
@@ -361,7 +363,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.ts",
-          "hash": "6598151735686675583",
+          "hash": "3426009800256809081",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -618,19 +620,20 @@
         },
         {
           "file": "src/app/app.component.ts",
-          "hash": "15636608643544303152",
+          "hash": "4959004858383535661",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router",
             "util-auth",
             "npm:@ngrx/signals",
             "npm:@angular/common",
-            "npm:rxjs"
+            "npm:rxjs",
+            "members"
           ]
         },
         {
           "file": "src/app/app.config.ts",
-          "hash": "8913763864809080054",
+          "hash": "12234793869331366450",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router",
@@ -642,7 +645,7 @@
         },
         {
           "file": "src/app/app.routes.ts",
-          "hash": "7701513944290145387",
+          "hash": "12539281143307633895",
           "deps": [
             "npm:@angular/router",
             [
@@ -707,11 +710,11 @@
         },
         {
           "file": "src/app/login.component.html",
-          "hash": "12971154641983189974"
+          "hash": "5106602364456139917"
         },
         {
           "file": "src/app/login.component.scss",
-          "hash": "3898178900668828250"
+          "hash": "4402602933485058253"
         },
         {
           "file": "src/app/login.component.spec.ts",
@@ -735,7 +738,7 @@
         },
         {
           "file": "src/app/navbar.component.html",
-          "hash": "7998897431910170497"
+          "hash": "11510790175855896730"
         },
         {
           "file": "src/app/navbar.component.scss",
@@ -750,7 +753,7 @@
         },
         {
           "file": "src/app/navbar.component.ts",
-          "hash": "6890723216088542652",
+          "hash": "7819682768628129548",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",

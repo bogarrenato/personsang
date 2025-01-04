@@ -60,4 +60,8 @@ export class NavbarComponent {
   getThemeText(): string {
     return this.isDarkTheme() ? 'Light Mode' : 'Dark Mode';
   }
+
+  // navigateToMembers() {
+  //   this.router.navigate(['/members']);
+  // }
 }
