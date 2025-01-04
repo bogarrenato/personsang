@@ -20,7 +20,7 @@
 .member-card {
   display: flex;
   flex-direction: column;
-  background: var(--card-background, #242424);
+  background: var(--card-background);
   border-radius: 0.75rem;
   overflow: hidden;
   transition: transform 0.2s ease;
@@ -45,8 +45,8 @@
   bottom: 0;
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-  color: white;
+  background: linear-gradient(transparent, var(--mat-sys-color-surface-container-highest));
+  color: var(--text-color);
 
   h2 {
     margin: 0;
@@ -88,7 +88,7 @@
 
 .card-content {
   padding: 1rem;
-  color: var(--text-color, #e0e0e0);
+  color: var(--text-color);
   flex: 1;
 }
 
@@ -97,18 +97,19 @@
   justify-content: space-between;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  border-bottom: 1px solid var(--border-color);
 }
 
 .label {
   display: block;
   font-size: 0.875rem;
-  color: var(--secondary-text-color, #a0a0a0);
+  color: var(--secondary-text-color);
   margin-bottom: 0.25rem;
 }
 
 .value {
   font-weight: 500;
+  color: var(--text-color);
 }
 
 p {
@@ -118,6 +119,7 @@ p {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  color: var(--text-color);
 }
 
 .card-action {
