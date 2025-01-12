@@ -649,10 +649,12 @@
                     "maximumError": "4kb"
                   }
                 ],
-                "fileReplacemenets": {
-                  "replace": "libs/shared/environments/src/lib/environment.ts",
-                  "with": "libs/shared/environments/src/lib/environment.prod.ts"
-                },
+                "fileReplacements": [
+                  {
+                    "replace": "libs/shared/environments/src/lib/environment.ts",
+                    "with": "libs/shared/environments/src/lib/environment.prod.ts"
+                  }
+                ],
                 "outputHashing": "all"
               },
               "development": {
