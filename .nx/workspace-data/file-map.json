@@ -79,10 +79,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/member-details/member-details.component.spec.ts",
-          "hash": "1859188265619909164",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "15191551133867559330"
         },
         {
           "file": "src/app/features/members/src/lib/member-details/member-details.component.ts",
@@ -106,10 +103,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/member-messages/member-messages.component.spec.ts",
-          "hash": "14033001448357420358",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "8734563201353880556"
         },
         {
           "file": "src/app/features/members/src/lib/member-messages/member-messages.component.ts",
@@ -137,10 +131,7 @@
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.spec.ts",
-          "hash": "8165263071296721024",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "10872688216702741913"
         },
         {
           "file": "src/app/features/members/src/lib/members/members.component.ts",
@@ -563,14 +554,7 @@
         },
         {
           "file": "src/app/app.component.spec.ts",
-          "hash": "4246730213184139103",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "util-common",
-            "npm:@angular/forms",
-            "util-auth"
-          ]
+          "hash": "6673091830574897574"
         },
         {
           "file": "src/app/app.component.ts",
@@ -620,10 +604,7 @@
         },
         {
           "file": "src/app/dashboard.component.spec.ts",
-          "hash": "2140510225620277411",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "15158700185332493044"
         },
         {
           "file": "src/app/dashboard.component.ts",
@@ -635,11 +616,7 @@
         },
         {
           "file": "src/app/guards/auth.guard.spec.ts",
-          "hash": "12942416802736267153",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router"
-          ]
+          "hash": "10323061935146520976"
         },
         {
           "file": "src/app/guards/auth.guard.ts",
@@ -651,11 +628,7 @@
         },
         {
           "file": "src/app/jwt.interceptor.spec.ts",
-          "hash": "8481343578616593873",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common"
-          ]
+          "hash": "16791042880725154897"
         },
         {
           "file": "src/app/jwt.interceptor.ts",
@@ -674,10 +647,7 @@
         },
         {
           "file": "src/app/login.component.spec.ts",
-          "hash": "15200146559264946551",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "4842767055881349584"
         },
         {
           "file": "src/app/login.component.ts",
@@ -702,10 +672,7 @@
         },
         {
           "file": "src/app/navbar.component.spec.ts",
-          "hash": "11611426068913683136",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "2092834209708776633"
         },
         {
           "file": "src/app/navbar.component.ts",

@@ -15016,11 +15016,6 @@
       },
       {
         "source": "my-workspace",
-        "target": "util-common",
-        "type": "static"
-      },
-      {
-        "source": "my-workspace",
         "target": "util-auth",
         "type": "static"
       },
@@ -15033,6 +15028,11 @@
         "source": "my-workspace",
         "target": "members",
         "type": "dynamic"
+      },
+      {
+        "source": "my-workspace",
+        "target": "util-common",
+        "type": "static"
       },
       {
         "source": "my-workspace",
