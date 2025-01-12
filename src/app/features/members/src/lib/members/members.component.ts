@@ -64,6 +64,7 @@ interface PaginationHeader {
   totalItems: number;
   totalPages: number;
 }
+
 export const MembersStore = signalStore(
   { providedIn: 'root' },
   withState<MembersState>({
@@ -80,7 +81,6 @@ export const MembersStore = signalStore(
       async loadMembers(pageIndex: number, pageSize: number) {
         patchState(store, { loading: true });
 
-        // Convert frontend 0-based index to backend 1-based index
         const backendPageNumber = pageIndex + 1;
 
         const params = new HttpParams()
@@ -92,20 +92,18 @@ export const MembersStore = signalStore(
             http.get<Member[]>(`https://localhost:5001/api/users`, {
               observe: 'response',
               params,
+              withCredentials: true  // Ez biztosítja, hogy a süti elmenjen a kéréssel
             })
           );
 
-          // Alapértelmezett értékek
+          const paginationHeader = response.headers.get('Pagination');
           let currentPage = pageIndex;
           let itemsPerPage = pageSize;
           let totalItems = 0;
 
-          // Pagination header feldolgozása
-          const paginationHeader = response.headers.get('Pagination');
           if (paginationHeader) {
             try {
               const parsed = JSON.parse(paginationHeader) as PaginationHeader;
-              // Csak akkor frissítjük az értékeket, ha sikeresen parse-oltuk
               currentPage = parsed.currentPage > 0 ? parsed.currentPage - 1 : 0;
               itemsPerPage = parsed.itemsPerPage;
               totalItems = parsed.totalItems;

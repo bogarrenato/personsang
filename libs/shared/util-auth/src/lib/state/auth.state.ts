@@ -8,7 +8,8 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom, map, tap } from 'rxjs';
+import { PresenceService } from 'src/app/features/members/src/lib/member-messages/member-messages.component';
 
 // libs/shared/auth/src/lib/types/request-state.ts
 export type RequestState<TData, TError = Error> = {
@@ -21,7 +22,7 @@ export type RequestState<TData, TError = Error> = {
 export interface User {
   id: string;
   username: string;
-  token: string;
+
   photoUrl: string;
   knownAs: string;
 }
@@ -37,7 +38,6 @@ export interface AuthState {
     isLoading: boolean;
     error: Error | null;
   };
-  token: string | null;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -47,7 +47,44 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(credentials: LoginCredentials) {
-    return this.http.post<User>(`${this.API_URL}account/login`, credentials);
+    return this.http
+      .post<User>(`${this.API_URL}account/login`, credentials, {
+        observe: 'response', // Teljes response megfigyelése
+        withCredentials: true, // Fontos a sütik miatt
+      })
+      .pipe(
+        tap((response) => {
+          console.log('=== Login Response Details ===');
+          console.log('Status:', response.status);
+
+          console.log('\n=== All Response Headers ===');
+          response.headers.keys().forEach((key) => {
+            console.log(`${key}:`, response.headers.get(key));
+          });
+
+          console.log('\n=== Set-Cookie Headers ===');
+          const cookies = response.headers.getAll('Set-Cookie');
+          if (cookies) {
+            cookies.forEach((cookie) => console.log('Cookie:', cookie));
+          }
+
+          console.log('\n=== Current Document Cookies ===');
+          console.log(document.cookie || 'No accessible cookies');
+
+          return response.body; // Visszaadjuk az eredeti response body-t
+        }),
+        map((response) => response.body) // Csak a body-t adjuk vissza a subscriber-eknek
+      );
+  }
+
+  logout() {
+    return this.http.post(
+      `${this.API_URL}account/logout`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
   }
 
   getCurrentUser(): Observable<User> {
@@ -77,16 +114,17 @@ export interface AuthState {
     isLoading: boolean;
     error: Error | null;
   };
-  token: string | null; // Add token to state
 }
-export const initialState: AuthState = {
+
+// auth.store.ts
+const initialState: AuthState = {
   loginRequest: {
     data: null,
     isLoading: false,
     error: null,
   },
-  token: null,
 };
+
 export const AuthStore = signalStore(
   { providedIn: 'root' },
   withState<AuthState>(initialState),
@@ -94,30 +132,27 @@ export const AuthStore = signalStore(
     isAuthenticated: computed(() => !!store.loginRequest().data),
     username: computed(() => store.loginRequest().data?.username ?? null),
     isLoading: computed(() => store.loginRequest().isLoading),
-    token: computed(() => store.token()),
   })),
-  withMethods((store) => {
+  withMethods((store, presenceService = inject(PresenceService)) => {
     const authService = inject(AuthService);
-    const tokenService = inject(TokenService);
     const router = inject(Router);
 
     return {
       async login(credentials: LoginCredentials): Promise<void> {
         patchState(store, {
           loginRequest: { data: null, isLoading: true, error: null },
-          token: null,
         });
 
         try {
           const user = await firstValueFrom(authService.login(credentials));
-          tokenService.setToken(user.token);
-          console.log(user);
-          sessionStorage.setItem('user', JSON.stringify(user));
 
           patchState(store, {
             loginRequest: { data: user, isLoading: false, error: null },
-            token: user.token,
           });
+
+          // Store minimal user info in sessionStorage for page refreshes
+          // sessionStorage.setItem('user_authenticated', 'true');
+
           router.navigate(['/members']);
         } catch (error) {
           patchState(store, {
@@ -126,32 +161,64 @@ export const AuthStore = signalStore(
               isLoading: false,
               error: error as Error,
             },
-            token: null,
           });
           throw error;
         }
       },
 
-      async checkAuthStatus(): Promise<void> {
-        const token = tokenService.getToken();
-        if (!token) return;
-
-        const storedUser = sessionStorage.getItem('user');
-        if (!storedUser) return;
-
+      async logout(): Promise<void> {
         try {
-          const user = JSON.parse(storedUser);
+          // Elküldjük a kijelentkezési kérést
+          await firstValueFrom(authService.logout());
+
+          // Töröljük a sessionStorage-t
+          // sessionStorage.removeItem('user_authenticated');
+
+          // Töröljük az auth állapotot
+          patchState(store, {
+            loginRequest: { data: null, isLoading: false, error: null },
+          });
+          presenceService.stopHubConnection();
+
+          // Átnavigálunk a login oldalra
+          await router.navigate(['/login']);
+        } catch (error) {
+          console.error('Logout error:', error);
+          throw error;
+        }
+      },
+      clearAuth(): void {
+        // sessionStorage.removeItem('user_authenticated');
+        patchState(store, {
+          loginRequest: {
+            data: null,
+            isLoading: false,
+            error: null,
+          },
+        });
+      },
+
+      async checkAuthStatus(): Promise<void> {
+        try {
+          const user = await firstValueFrom(authService.getCurrentUser());
+
           patchState(store, {
             loginRequest: {
               data: user,
               isLoading: false,
               error: null,
             },
-            token: token,
           });
         } catch (error) {
-          tokenService.removeToken();
-          sessionStorage.removeItem('user');
+          // sessionStorage.removeItem('user_authenticated');
+          patchState(store, {
+            loginRequest: {
+              data: null,
+              isLoading: false,
+              error: error as Error,
+            },
+          });
+          router.navigate(['/login']);
         }
       },
     };

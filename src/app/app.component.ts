@@ -1,6 +1,7 @@
 import {
   Component,
   Injectable,
+  OnDestroy,
   OnInit,
   computed,
   effect,
@@ -77,7 +78,12 @@ export const LoginStore = signalStore(
   }),
   withCallState(),
   withMethods(
-    (store, authStore = inject(AuthStore), router = inject(Router)) => ({
+    (
+      store,
+      authStore = inject(AuthStore),
+      router = inject(Router),
+      presenceService = inject(PresenceService)
+    ) => ({
       async login(username: string, password: string) {
         patchState(store, {
           username,
@@ -87,8 +93,9 @@ export const LoginStore = signalStore(
 
         try {
           await authStore.login({ username, password });
-          // router.navigate(['/dashboard']);
+          await router.navigate(['/members']);
           patchState(store, { callState: 'loaded' });
+          presenceService.createHubConnection();
         } catch (error) {
           patchState(store, {
             callState: {
@@ -116,14 +123,19 @@ export const LoginStore = signalStore(
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  private authStore = inject(AuthStore);
   presenceService = inject(PresenceService);
-  ngOnInit(): void {
-    const storedUser = sessionStorage.getItem('user');
-    console.log(storedUser)
-    if (!storedUser) return;
 
-    const user = JSON.parse(storedUser);
-    this.presenceService.createHubConnection(user);
+  async ngOnInit() {
+    // await this.authStore.checkAuthStatus();
+
+    if (this.authStore.isAuthenticated()) {
+      // this.presenceService.createHubConnection();
+    }
+  }
+
+  ngOnDestroy() {
+    this.presenceService.stopHubConnection();
   }
 }

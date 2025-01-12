@@ -14710,6 +14710,11 @@
       },
       {
         "source": "util-auth",
+        "target": "members",
+        "type": "static"
+      },
+      {
+        "source": "util-auth",
         "target": "npm:jest-preset-angular",
         "type": "static"
       }

@@ -43,6 +43,7 @@ export class NavbarComponent {
     // Implement logout logic here
     // You might want to call a method from your AuthStore
     this.router.navigate(['/login']);
+    this.authStore.logout();
   }
 
   navigateToMembers() {

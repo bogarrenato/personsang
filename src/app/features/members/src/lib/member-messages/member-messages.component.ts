@@ -28,7 +28,11 @@ import {
   take,
   takeUntil,
 } from 'rxjs';
-import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import {
+  HttpTransportType,
+  HubConnection,
+  HubConnectionBuilder,
+} from '@microsoft/signalr';
 import { AuthStore, User } from '@my-workspace/shared/util-auth';
 import {
   patchState,
@@ -150,45 +154,52 @@ export const environment = {
   apiUrl: 'https://localhost:5001/api/',
   hubUrl: 'https://localhost:5001/hubs/',
 };
-
-
 @Injectable({
   providedIn: 'root',
 })
 export class PresenceService {
   hubUrl = environment.hubUrl;
   private hubConnection: HubConnection | undefined;
-
-  // BehaviorSubject helyett Signal
   private onlineUsersSource = signal<string[]>([]);
   onlineUsers = this.onlineUsersSource.asReadonly();
 
-  constructor(private toastr: ToastrService, private router: Router) {}
+  constructor(
+    private toastr: ToastrService, 
+    private router: Router
+  ) {}
 
-  createHubConnection(user: User) {
+  createHubConnection() {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'presence', {
-        accessTokenFactory: () => user.token,
+        withCredentials: true,
+        skipNegotiation: false, // Remove this or set to false
+        transport: HttpTransportType.WebSockets
       })
       .withAutomaticReconnect()
       .build();
 
-    this.hubConnection.start().catch((error) => console.log(error));
+    this.hubConnection.start()
+      .then(() => {
+        console.log('Connected to presence hub');
+      })
+      .catch(error => {
+        console.error('Error connecting to presence hub:', error);
+      });
 
-    this.hubConnection.on('UserIsOnline', (username) => {
-      // Signal update online users
-      this.onlineUsersSource.update((users: string[]) => [...users, username]);
+    this.hubConnection.on('UserIsOnline', (username: string) => {
+      console.log(`${username} has connected`);
+      this.onlineUsersSource.update(users => [...users, username]);
+      this.toastr.info(`${username} has connected`);
     });
 
-    this.hubConnection.on('UserIsOffline', (username) => {
-      // Signal update offline users
-      this.onlineUsersSource.update((users: string[]) =>
-        users.filter((x) => x !== username)
-      );
+    this.hubConnection.on('UserIsOffline', (username: string) => {
+      console.log(`${username} has disconnected`);
+      this.onlineUsersSource.update(users => users.filter(x => x !== username));
+      this.toastr.warning(`${username} has disconnected`);
     });
 
     this.hubConnection.on('GetOnlineUsers', (usernames: string[]) => {
-      // Signal set online users
+      console.log('Received online users:', usernames);
       this.onlineUsersSource.set(usernames);
     });
 
@@ -196,20 +207,21 @@ export class PresenceService {
       this.toastr
         .info(knownAs + ' has sent you a new message!')
         .onTap.pipe(take(1))
-        .subscribe(() =>
-          this.router.navigateByUrl('/members/' + username + '?tab=3')
-        );
+        .subscribe(() => this.router.navigateByUrl('/members/' + username + '?tab=3'));
     });
   }
 
   stopHubConnection() {
-    if (!this.hubConnection) return;
-    this.hubConnection.stop().catch((error) => console.log(error));
+    if (this.hubConnection) {
+      console.log('Stopping presence hub connection');
+      this.hubConnection.stop()
+        .catch(error => console.log(error))
+        .finally(() => {
+          this.onlineUsersSource.set([]);
+        });
+    }
   }
 }
-
-
-
 
 @Injectable({
   providedIn: 'root',
@@ -223,10 +235,12 @@ export class MessageService {
 
   constructor(private http: HttpClient) {}
 
-  createHubConnection(user: User, otherUsername: string) {
+  createHubConnection(otherUsername: string) {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
-        accessTokenFactory: () => user.token,
+        withCredentials: true, // Cookie küldés
+        skipNegotiation: true,
+        transport: HttpTransportType.WebSockets,
       })
       .withAutomaticReconnect()
       .build();
@@ -246,12 +260,14 @@ export class MessageService {
       });
     });
 
-    this.hubConnection.on('UpdatedGroup', (group: Group) => {  // Itt group és nem {connections}
-      this.messageThread$.pipe(take(1)).subscribe((messages) => {  // take(1) kell, különben memory leak!
+    this.hubConnection.on('UpdatedGroup', (group: Group) => {
+      // Itt group és nem {connections}
+      this.messageThread$.pipe(take(1)).subscribe((messages) => {
+        // take(1) kell, különben memory leak!
         // Új tömböt hozunk létre a változások miatt
-        const updatedMessages = messages.map(message => ({
+        const updatedMessages = messages.map((message) => ({
           ...message,
-          dateRead: message.dateRead || new Date()
+          dateRead: message.dateRead || new Date(),
         }));
         this.messageThreadSource.next(updatedMessages);
       });
@@ -351,7 +367,7 @@ export const MessageStore = signalStore(
           // SignalR kapcsolat létrehozása
           const currentUser = authStore.loginRequest().data;
           if (currentUser) {
-            messageService.createHubConnection(currentUser, username);
+            messageService.createHubConnection( username);
           }
 
           patchState(store, {
