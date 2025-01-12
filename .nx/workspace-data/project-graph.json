@@ -14643,6 +14643,16 @@
       },
       {
         "source": "util-common",
+        "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "util-common",
+        "target": "npm:ngx-toastr",
+        "type": "static"
+      },
+      {
+        "source": "util-common",
         "target": "npm:jest-preset-angular",
         "type": "static"
       }
