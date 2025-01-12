@@ -92,6 +92,10 @@
       ],
       "my-workspace": [
         {
+          "file": ".github/workflows/main.yml",
+          "hash": "12131002377753227530"
+        },
+        {
           "file": ".gitignore",
           "hash": "6870515080324212892"
         },
@@ -174,7 +178,7 @@
         },
         {
           "file": "package.json",
-          "hash": "6233541220693039710",
+          "hash": "10194979983688955816",
           "deps": [
             "npm:@angular-devkit/build-angular",
             "npm:@angular-devkit/core",
